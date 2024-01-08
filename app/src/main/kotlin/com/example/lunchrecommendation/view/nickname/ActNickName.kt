@@ -91,7 +91,7 @@ class ActNickName : BaseContractActivity<ActNicknameBinding>() {
                             etNickName.setSelection(8)
                             tvWarning.visibility = View.VISIBLE
                         } else {
-                            btnNext.isEnabled = nickName.length in 2..8
+                            btnNext.isEnabled = nickName.length in 1..8
                             tvWarning.visibility = View.GONE
                         }
                     }

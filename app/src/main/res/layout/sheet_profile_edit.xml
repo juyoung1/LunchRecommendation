@@ -51,6 +51,12 @@
 
                     <androidx.appcompat.widget.AppCompatImageView
                         android:id="@+id/ivProfile"
+                        android:layout_width="match_parent"
+                        android:layout_height="match_parent"
+                        android:scaleType="centerCrop" />
+
+                    <androidx.appcompat.widget.AppCompatImageView
+                        android:id="@+id/ivNoProfile"
                         android:layout_width="wrap_content"
                         android:layout_height="25dp"
                         android:layout_gravity="center"
@@ -113,6 +119,19 @@
                     android:textSelectHandle="@drawable/edittext_text_handle"
                     app:layout_constraintTop_toBottomOf="@id/tvNickName" />
 
+                <androidx.appcompat.widget.AppCompatTextView
+                    android:id="@+id/tvWarningA"
+                    style="@style/robotoMedium.11"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginStart="30dp"
+                    android:layout_marginTop="5dp"
+                    android:text="@string/nick_name_text_4"
+                    android:textColor="@color/color_ff0000"
+                    android:visibility="gone"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintTop_toBottomOf="@id/etNickName" />
+
                 <TextView
                     android:id="@+id/tvFavoriteMenu"
                     style="@style/sharpsansMedium.14"
@@ -123,18 +142,18 @@
                     android:text="@string/sheet_text_8"
                     android:textColor="@color/color_999999"
                     app:layout_constraintStart_toStartOf="parent"
-                    app:layout_constraintTop_toBottomOf="@id/etNickName" />
+                    app:layout_constraintTop_toBottomOf="@id/tvWarningA" />
 
                 <androidx.appcompat.widget.AppCompatEditText
-                    android:id="@+id/etFavoriteMenu"
-                    style="@style/sharpsansRegular.12"
+                    android:id="@+id/etFavoriteFood"
+                    style="@style/sharpsansRegular.14"
                     android:layout_width="match_parent"
-                    android:layout_height="68dp"
+                    android:layout_height="48dp"
                     android:layout_marginStart="20dp"
                     android:layout_marginTop="6dp"
                     android:layout_marginEnd="20dp"
                     android:background="@drawable/bg_edit_text"
-                    android:gravity="top|start"
+                    android:gravity="start"
                     android:hint="@string/sheet_text_9"
                     android:inputType="text"
                     android:maxLines="1"
@@ -147,15 +166,28 @@
                     android:textSelectHandle="@drawable/edittext_text_handle"
                     app:layout_constraintTop_toBottomOf="@id/tvFavoriteMenu" />
 
+                <androidx.appcompat.widget.AppCompatTextView
+                    android:id="@+id/tvWarningB"
+                    style="@style/robotoMedium.11"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginStart="30dp"
+                    android:layout_marginTop="5dp"
+                    android:text="@string/sheet_text_11"
+                    android:textColor="@color/color_ff0000"
+                    android:visibility="gone"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintTop_toBottomOf="@id/etFavoriteFood" />
+
                 <!-- 닫기, 저장 -->
                 <androidx.appcompat.widget.LinearLayoutCompat
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:layout_marginTop="40dp"
+                    android:layout_marginTop="60dp"
                     android:background="@color/white"
                     android:paddingStart="20dp"
                     android:paddingEnd="20dp"
-                    app:layout_constraintTop_toBottomOf="@id/etFavoriteMenu">
+                    app:layout_constraintTop_toBottomOf="@id/etFavoriteFood">
 
                     <androidx.appcompat.widget.AppCompatTextView
                         android:id="@+id/tvClose"
