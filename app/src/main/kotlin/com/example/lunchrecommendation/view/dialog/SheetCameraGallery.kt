@@ -56,16 +56,13 @@ class SheetCameraGallery(private val imageCapturedCallback: (String) -> Unit) : 
         val bottomSheetDialog = BottomSheetDialog(requireContext(), R.style.BottomModalDialogTheme)
 
         bottomSheetDialog.setOnShowListener {
-            val bottomSheet =
-                (it as BottomSheetDialog).findViewById<FrameLayout>(com.google.android.material.R.id.design_bottom_sheet)
+            val bottomSheet = (it as BottomSheetDialog).findViewById<FrameLayout>(com.google.android.material.R.id.design_bottom_sheet)
 
-            BottomSheetBehavior.from((bottomSheet as FrameLayout)).state =
-                BottomSheetBehavior.STATE_EXPANDED
+            BottomSheetBehavior.from((bottomSheet as FrameLayout)).state = BottomSheetBehavior.STATE_EXPANDED
             BottomSheetBehavior.from(bottomSheet).skipCollapsed = true
             BottomSheetBehavior.from(bottomSheet).isHideable = true
             BottomSheetBehavior.from(bottomSheet).isDraggable = false
         }
-
         return bottomSheetDialog
     }
 
@@ -138,8 +135,8 @@ class SheetCameraGallery(private val imageCapturedCallback: (String) -> Unit) : 
     }
 
     private fun createImageFile(): File? {
-        val timeStamp: String =
-            SimpleDateFormat("yyyyMMdd_HHmmss", Locale.getDefault()).format(Date())
+
+        val timeStamp: String = SimpleDateFormat("yyyyMMdd_HHmmss", Locale.getDefault()).format(Date())
         val storageDir: File? = requireContext().getExternalFilesDir(Environment.DIRECTORY_PICTURES)
         val imageFileName = "JPEG_${timeStamp}_"
 

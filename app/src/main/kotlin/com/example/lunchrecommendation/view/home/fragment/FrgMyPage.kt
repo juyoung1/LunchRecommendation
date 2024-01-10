@@ -1,5 +1,6 @@
 package com.example.lunchrecommendation.view.home.fragment
 
+import android.content.DialogInterface
 import android.os.Bundle
 import android.view.LayoutInflater
 import android.view.ViewGroup
@@ -9,6 +10,7 @@ import com.example.lunchrecommendation.databinding.FrgMyPageBinding
 import com.example.lunchrecommendation.util.PreferencesUtil
 import com.example.lunchrecommendation.view.dialog.SheetProfileEdit
 import dagger.hilt.android.AndroidEntryPoint
+
 
 /**
  * 홈 - 마이 페이지
@@ -37,7 +39,7 @@ class FrgMyPage : BaseFragment<FrgMyPageBinding>() {
 
         with(mBinding) {
 
-            tvNickNname.text = PreferencesUtil.getPreferencesString("nickName")
+            tvNickName.text = PreferencesUtil.getPreferencesString("nickName")
 
             incMyFavorite.tvTitle.text = getString(R.string.home_text_3)
             incMyFood.tvTitle.text = getString(R.string.home_text_4)
@@ -55,7 +57,7 @@ class FrgMyPage : BaseFragment<FrgMyPageBinding>() {
             clProfileEdit.setOnClickListener {
 
                 sheetProfileEdit?.dismiss()
-                sheetProfileEdit = SheetProfileEdit{}
+                sheetProfileEdit = SheetProfileEdit { tvNickName.text = PreferencesUtil.getPreferencesString("nickName") }
                 sheetProfileEdit?.show(parentFragmentManager, "")
             }
         }

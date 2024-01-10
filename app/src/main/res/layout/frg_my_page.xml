@@ -53,7 +53,7 @@
 
             <!-- 닉네임 -->
             <androidx.appcompat.widget.AppCompatTextView
-                android:id="@+id/tvNickNname"
+                android:id="@+id/tvNickName"
                 style="@style/sharpsansBold.20"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"

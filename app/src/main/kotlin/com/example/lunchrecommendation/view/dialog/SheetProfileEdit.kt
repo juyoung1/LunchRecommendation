@@ -9,31 +9,25 @@ import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import android.widget.FrameLayout
-import com.bumptech.glide.Glide
 import com.example.lunchrecommendation.R
 import com.example.lunchrecommendation.base.BaseBottomSheetFragment
 import com.example.lunchrecommendation.databinding.SheetProfileEditBinding
 import com.example.lunchrecommendation.util.PreferencesUtil
-import com.example.lunchrecommendation.view.home.activity.ActHome
 import com.google.android.material.bottomsheet.BottomSheetBehavior
 import com.google.android.material.bottomsheet.BottomSheetDialog
 import dagger.hilt.android.AndroidEntryPoint
-import java.io.File
 
 /**
  * 프로필 수정 바텀시트
  */
-@AndroidEntryPoint
-class SheetProfileEdit(val function: (type: String) -> Unit) : BaseBottomSheetFragment<SheetProfileEditBinding>() {
+class SheetProfileEdit(val function: () -> Unit) : BaseBottomSheetFragment<SheetProfileEditBinding>() {
 
     private var nickName = ""           // 닉네임
     private var favoriteFood = ""       // 최애 음식
 
     override fun getViewBinding(inflater: LayoutInflater, container: ViewGroup?) = SheetProfileEditBinding.inflate(inflater, container, false)
 
-    override fun initData() {
-
-    }
+    override fun initData() {}
 
     override fun initView() {
 
@@ -77,7 +71,10 @@ class SheetProfileEdit(val function: (type: String) -> Unit) : BaseBottomSheetFr
 
         with(mBinding) {
 
+            // 닫기
             tvClose.setOnClickListener { dismiss() }
+
+            // 저장
             tvSave.setOnClickListener {
 
                 nickName = etNickName.text.toString()
@@ -92,15 +89,15 @@ class SheetProfileEdit(val function: (type: String) -> Unit) : BaseBottomSheetFr
 
                     PreferencesUtil.setPreferencesString("nickName", nickName)
                     PreferencesUtil.setPreferencesString("favoriteFood", favoriteFood)
-
+                    function()
                     dismiss()
                 }
             }
 
+            // 프로필
             cvProfile.setOnClickListener {
 
                 context?.let { ctx ->
-
 
                     val sheetCameraGallery = SheetCameraGallery { imagePath ->
 
