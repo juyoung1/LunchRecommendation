@@ -111,7 +111,12 @@
 
     <style name="BottomModalDialogStyle" parent="Widget.Design.BottomSheet.Modal">
         <item name="android:background">@android:color/transparent</item>
+    </style>
 
+    <style name="RoundCornerDialog" parent="@style/Theme.MaterialComponents.Dialog.Alert">
+        <item name="android:windowBackground">@drawable/bg_radius_10_ffffff</item>
+        <item name="android:windowMinWidthMajor">312dp</item>
+        <item name="android:windowMinWidthMinor">312dp</item>
     </style>
 
 </resources>

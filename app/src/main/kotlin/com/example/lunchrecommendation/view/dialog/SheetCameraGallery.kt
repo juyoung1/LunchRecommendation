@@ -28,7 +28,9 @@ import java.text.SimpleDateFormat
 import java.util.Date
 import java.util.Locale
 
-
+/**
+ * 사진 촬영, 앨범에서 선택 바텀시트
+ */
 class SheetCameraGallery(private val imageCapturedCallback: (String) -> Unit) : BaseBottomSheetFragment<SheetCameraGalleryBinding>(){
 
     private lateinit var currentPhotoPath: String
@@ -69,12 +71,7 @@ class SheetCameraGallery(private val imageCapturedCallback: (String) -> Unit) : 
     /**
      * Initialize Display
      */
-    private fun initDisplay() {
-        context?.let {
-            with(mBinding) {
-            }
-        }
-    }
+    private fun initDisplay() {}
 
     /**
      * Click Listener
@@ -112,6 +109,7 @@ class SheetCameraGallery(private val imageCapturedCallback: (String) -> Unit) : 
 
                         // 앨범 실행
                         openGallery()
+
                     } else {
 
                         // 앨범 권한 요청
@@ -134,6 +132,7 @@ class SheetCameraGallery(private val imageCapturedCallback: (String) -> Unit) : 
         }
     }
 
+    // 이미지 파일 생성
     private fun createImageFile(): File? {
 
         val timeStamp: String = SimpleDateFormat("yyyyMMdd_HHmmss", Locale.getDefault()).format(Date())
@@ -164,6 +163,7 @@ class SheetCameraGallery(private val imageCapturedCallback: (String) -> Unit) : 
         pickImageLauncher.launch(gallery)
     }
 
+    // 이미지 선택 런처
     private val pickImageLauncher: ActivityResultLauncher<Intent> = registerForActivityResult(ActivityResultContracts.StartActivityForResult()) { result ->
         if (result.resultCode == RESULT_OK) {
             val data: Intent? = result.data

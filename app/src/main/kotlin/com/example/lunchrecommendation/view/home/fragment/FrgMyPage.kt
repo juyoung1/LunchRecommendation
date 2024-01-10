@@ -1,6 +1,6 @@
 package com.example.lunchrecommendation.view.home.fragment
 
-import android.content.DialogInterface
+import android.content.Intent
 import android.os.Bundle
 import android.view.LayoutInflater
 import android.view.ViewGroup
@@ -9,8 +9,8 @@ import com.example.lunchrecommendation.base.BaseFragment
 import com.example.lunchrecommendation.databinding.FrgMyPageBinding
 import com.example.lunchrecommendation.util.PreferencesUtil
 import com.example.lunchrecommendation.view.dialog.SheetProfileEdit
+import com.example.lunchrecommendation.view.nickname.ActNickName
 import dagger.hilt.android.AndroidEntryPoint
-
 
 /**
  * 홈 - 마이 페이지
@@ -54,12 +54,38 @@ class FrgMyPage : BaseFragment<FrgMyPageBinding>() {
 
         with(mBinding) {
 
+            // 프로필 수정
             clProfileEdit.setOnClickListener {
 
                 sheetProfileEdit?.dismiss()
                 sheetProfileEdit = SheetProfileEdit { tvNickName.text = PreferencesUtil.getPreferencesString("nickName") }
                 sheetProfileEdit?.show(parentFragmentManager, "")
             }
+
+            // 내정보 초기화
+            tvReset.setOnClickListener {
+
+                openPopup(getString(R.string.popup_text_1), getString(R.string.popup_text_4), getString(R.string.popup_text_2), {}, getString(R.string.confirm),
+                    {
+                        PreferencesUtil.deletePreferences("nickName")
+                        PreferencesUtil.deletePreferences("favoriteFood")
+                        moveToNickName()
+                    },
+                    false
+                )
+            }
+        }
+    }
+
+    /**
+     * 닉네임 입력 화면 이동
+     */
+    private fun moveToNickName() {
+
+        Intent(context, ActNickName::class.java).apply {
+
+            flags = Intent.FLAG_ACTIVITY_CLEAR_TOP
+            startActivity(this)
         }
     }
 

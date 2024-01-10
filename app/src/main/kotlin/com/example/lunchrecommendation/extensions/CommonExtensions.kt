@@ -114,3 +114,9 @@ fun View.ripple(): View {
     isFocusable = true
     return this
 }
+
+fun Int.toDp(context: Context): Float = TypedValue.applyDimension(
+    TypedValue.COMPLEX_UNIT_DIP,
+    this.toFloat(),
+    context.resources.displayMetrics
+)

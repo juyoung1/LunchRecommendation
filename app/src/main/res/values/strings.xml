@@ -37,4 +37,9 @@
     <string name="sheet_text_15"></string>
     <string name="sheet_text_16"></string>
 
+    <string name="popup_text_1">내정보를 초기화 하시겠습니까?</string>
+    <string name="popup_text_2">취소</string>
+    <string name="popup_text_3">확인</string>
+    <string name="popup_text_4">내 찜 목록과 내가 찍은 음식이 초기화 됩니다.</string>
+
 </resources>

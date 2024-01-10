@@ -11,12 +11,11 @@ import com.example.lunchrecommendation.component.ViewPagerAdapter
 import com.example.lunchrecommendation.data.dao.MenuDao
 import com.example.lunchrecommendation.databinding.FrgMenuBinding
 import com.example.lunchrecommendation.view.adapter.MenuTabListAdapter
-import com.example.lunchrecommendation.view.menu.FrgChicken
 import com.example.lunchrecommendation.view.menu.FrgChinaFood
 import com.example.lunchrecommendation.view.menu.FrgFastFood
 import com.example.lunchrecommendation.view.menu.FrgJapanFood
 import com.example.lunchrecommendation.view.menu.FrgKoreaFood
-import com.example.lunchrecommendation.view.menu.FrgPizza
+import com.example.lunchrecommendation.view.menu.FrgNoodle
 import com.example.lunchrecommendation.view.menu.FrgSnackBar
 import com.example.lunchrecommendation.view.menu.FrgWestFood
 import dagger.hilt.android.AndroidEntryPoint
@@ -39,19 +38,18 @@ class FrgMenu : BaseFragment<FrgMenuBinding>() {
 
     override fun initData() {
 
-        for (menu in 0..7) {
+        for (menu in 0..6) {
 
             val data = MenuDao()
             val category = when(menu) {
 
                 0 -> {"한식"}
-                1 -> {"치킨"}
-                2 -> {"피자"}
-                3 -> {"양식"}
-                4 -> {"분식"}
-                5 -> {"일식"}
-                6 -> {"중식"}
-                7 -> {"패스트 푸드"}
+                1 -> {"면"}
+                2 -> {"양식"}
+                3 -> {"분식"}
+                4 -> {"일식"}
+                5 -> {"중식"}
+                6 -> {"패스트 푸드"}
                 else -> {""}
             }
             data.menu = category
@@ -100,7 +98,7 @@ class FrgMenu : BaseFragment<FrgMenuBinding>() {
         }
     }
 
-    /**
+    /**개
      * ViewPager 초기화
      */
     private fun initViewPager() {
@@ -110,8 +108,7 @@ class FrgMenu : BaseFragment<FrgMenuBinding>() {
             activity?.let { act ->
 
                 val frgKoreaFood = FrgKoreaFood.newInstance().apply {  }
-                val frgChicken = FrgChicken.newInstance().apply {  }
-                val frgPizza = FrgPizza.newInstance().apply {  }
+                val frgNoodle = FrgNoodle.newInstance().apply {  }
                 val frgWestFood = FrgWestFood.newInstance().apply {  }
                 val frgSnackBar = FrgSnackBar.newInstance().apply {  }
                 val frgJapanFood = FrgJapanFood.newInstance().apply {  }
@@ -119,8 +116,7 @@ class FrgMenu : BaseFragment<FrgMenuBinding>() {
                 val frgFastFood = FrgFastFood.newInstance().apply {  }
 
                 fragments.add(frgKoreaFood)
-                fragments.add(frgChicken)
-                fragments.add(frgPizza)
+                fragments.add(frgNoodle)
                 fragments.add(frgWestFood)
                 fragments.add(frgSnackBar)
                 fragments.add(frgJapanFood)
