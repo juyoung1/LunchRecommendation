@@ -11,6 +11,9 @@ import com.example.lunchrecommendation.data.dao.MenuDao
 import com.example.lunchrecommendation.databinding.ItemMenuListBinding
 import com.example.lunchrecommendation.databinding.ItemTabMenuListBinding
 
+/**
+ * 메뉴 - 메뉴 리스트 어댑터
+ */
 class MenuListAdapter(val context: Context?, private val list: ArrayList<MenuDao>): RecyclerView.Adapter<MenuListAdapter.CustomViewHolder>() {
 
     interface SelectItem { fun selectItem(position: Int) }
@@ -42,10 +45,14 @@ class MenuListAdapter(val context: Context?, private val list: ArrayList<MenuDao
                 context?.let { ctx ->
 
                     // 메뉴 이미지
-                    Glide.with(context).load(dao.file).into(ivProfile)
+                    Glide.with(context).load(dao.menuImage).into(ivProfile)
 
                     // 메뉴 이름
                     tvMenu.text = dao.menu
+
+                    // 찜
+                    ivHeart.isSelected = dao.isSelected
+                    ivHeart.setClickListener(position, selectItem)
                 }
             }
         }

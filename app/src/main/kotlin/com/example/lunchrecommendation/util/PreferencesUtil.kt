@@ -64,6 +64,24 @@ class PreferencesUtil {
         fun getPreferencesBoolean(key: String): Boolean =
             context!!.getSharedPreferences(PREF_NAME, 0).getBoolean(key, false)
 
+        // Set Preferences for String Set
+        @JvmStatic
+        fun setPreferencesStringSet(key: String, values: Set<String>) =
+            context!!.getSharedPreferences(PREF_NAME, 0).edit()
+                .putStringSet(key, values)
+                .commit()
+
+        // Get Preferences for String Set
+        @JvmStatic
+        fun getPreferencesStringSet(key: String): Set<String> =
+            context!!.getSharedPreferences(PREF_NAME, 0).getStringSet(key, setOf()) ?: setOf()
+
+        // Delete Preferences for String Set
+        @JvmStatic
+        fun deletePreferencesStringSet(key: String): Boolean =
+            context!!.getSharedPreferences(PREF_NAME, 0).edit()
+                .remove(key)
+                .commit()
 
         // Delete Preferences
         @JvmStatic

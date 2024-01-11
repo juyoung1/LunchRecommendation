@@ -1,4 +1,4 @@
-package com.example.lunchrecommendation.view.menu
+package com.example.lunchrecommendation.view.menu.fragment
 
 import android.os.Bundle
 import android.view.LayoutInflater
@@ -13,10 +13,10 @@ import com.example.lunchrecommendation.view.util.MenuListUtil
 import dagger.hilt.android.AndroidEntryPoint
 
 /**
- * 메뉴 탭 - 한식
+ * 홈 - 마이 페이지
  */
 @AndroidEntryPoint
-class FrgKoreaFood : BaseFragment<FrgMenuListBinding>() {
+class FrgJapanFood : BaseFragment<FrgMenuListBinding>() {
 
     // 메뉴 리스트 어댑터
     private lateinit var mAdapter: MenuListAdapter
@@ -29,7 +29,7 @@ class FrgKoreaFood : BaseFragment<FrgMenuListBinding>() {
     override fun initData() {
 
         mData.clear()
-        mData.addAll(MenuListUtil.koreaFood())
+        mData.addAll(MenuListUtil.japanFood())
     }
 
     override fun initView() { initRecyclerView() }
@@ -70,8 +70,8 @@ class FrgKoreaFood : BaseFragment<FrgMenuListBinding>() {
 
     companion object {
 
-        fun newInstance(): FrgKoreaFood {
-            return FrgKoreaFood().apply {
+        fun newInstance(): FrgJapanFood {
+            return FrgJapanFood().apply {
                 arguments = Bundle().apply {}
             }
         }

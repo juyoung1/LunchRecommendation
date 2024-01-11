@@ -9,6 +9,7 @@ import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import android.widget.FrameLayout
+import com.bumptech.glide.Glide
 import com.example.lunchrecommendation.R
 import com.example.lunchrecommendation.base.BaseBottomSheetFragment
 import com.example.lunchrecommendation.databinding.SheetProfileEditBinding
@@ -24,6 +25,7 @@ class SheetProfileEdit(val function: () -> Unit) : BaseBottomSheetFragment<Sheet
 
     private var nickName = ""           // 닉네임
     private var favoriteFood = ""       // 최애 음식
+    private var profileImage = ""       // 프로필 이미지
 
     override fun getViewBinding(inflater: LayoutInflater, container: ViewGroup?) = SheetProfileEditBinding.inflate(inflater, container, false)
 
@@ -61,6 +63,14 @@ class SheetProfileEdit(val function: () -> Unit) : BaseBottomSheetFragment<Sheet
         with(mBinding) {
 
             etFavoriteFood.hint = getString(R.string.sheet_text_9, PreferencesUtil.getPreferencesString("nickName"))
+
+            // 프로필 이미지
+            if (PreferencesUtil.getPreferencesString("profileImage").isNotEmpty()) {
+
+                ivNoProfile.visibility = View.GONE
+                Glide.with(requireContext()).load(PreferencesUtil.getPreferencesString("profileImage")).into(ivProfile)
+
+            }
         }
     }
 
@@ -71,15 +81,16 @@ class SheetProfileEdit(val function: () -> Unit) : BaseBottomSheetFragment<Sheet
 
         with(mBinding) {
 
-            // 닫기
+            /** 닫기 */
             tvClose.setOnClickListener { dismiss() }
 
-            // 저장
+            /** 저장 */
             tvSave.setOnClickListener {
 
                 nickName = etNickName.text.toString()
                 favoriteFood = etFavoriteFood.text.toString()
 
+                // 닉네임 비었을 시 경고 문구 노출
                 if (nickName.isEmpty()) {
 
                     tvWarningA.visibility = View.VISIBLE
@@ -89,6 +100,7 @@ class SheetProfileEdit(val function: () -> Unit) : BaseBottomSheetFragment<Sheet
 
                     PreferencesUtil.setPreferencesString("nickName", nickName)
                     PreferencesUtil.setPreferencesString("favoriteFood", favoriteFood)
+                    PreferencesUtil.setPreferencesString("profileImage", profileImage)
                     function()
                     dismiss()
                 }
@@ -97,15 +109,13 @@ class SheetProfileEdit(val function: () -> Unit) : BaseBottomSheetFragment<Sheet
             // 프로필
             cvProfile.setOnClickListener {
 
-                context?.let { ctx ->
+                val sheetCameraGallery = SheetCameraGallery { imagePath ->
 
-                    val sheetCameraGallery = SheetCameraGallery { imagePath ->
-
-                        ivNoProfile.visibility = View.GONE
-                        ivProfile.setImageURI(Uri.parse(imagePath))
-                    }
-                    sheetCameraGallery.show(childFragmentManager, "SheetCameraGallery")
+                    profileImage = imagePath
+                    ivNoProfile.visibility = View.GONE
+                    ivProfile.setImageURI(Uri.parse(profileImage))
                 }
+                sheetCameraGallery.show(childFragmentManager, "SheetCameraGallery")
             }
         }
     }
@@ -128,6 +138,7 @@ class SheetProfileEdit(val function: () -> Unit) : BaseBottomSheetFragment<Sheet
 
                         nickName = etNickName.text.toString()
 
+                        // 닉네임 입력 8글자로 제한
                         if (nickName.length > 8) {
                             etNickName.setText(nickName.substring(0, 8))
                             etNickName.setSelection(8)
@@ -152,6 +163,7 @@ class SheetProfileEdit(val function: () -> Unit) : BaseBottomSheetFragment<Sheet
 
                         favoriteFood = etFavoriteFood.text.toString()
 
+                        // 최애 음식 입력 8글자로 제한
                         if (favoriteFood.length > 8) {
                             etFavoriteFood.setText(favoriteFood.substring(0, 8))
                             etFavoriteFood.setSelection(8)

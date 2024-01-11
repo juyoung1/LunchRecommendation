@@ -33,6 +33,15 @@
 
         </androidx.cardview.widget.CardView>
 
+        <androidx.appcompat.widget.AppCompatImageView
+            android:id="@+id/ivHeart"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:padding="10dp"
+            android:src="@drawable/ic_heart"
+            app:layout_constraintBottom_toBottomOf="@id/cvProfile"
+            app:layout_constraintEnd_toEndOf="@id/cvProfile" />
+
         <androidx.appcompat.widget.AppCompatTextView
             android:id="@+id/tvMenu"
             style="@style/sharpsansBold.14"

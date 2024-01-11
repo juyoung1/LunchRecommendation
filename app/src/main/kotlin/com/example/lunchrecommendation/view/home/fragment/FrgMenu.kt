@@ -11,13 +11,13 @@ import com.example.lunchrecommendation.component.ViewPagerAdapter
 import com.example.lunchrecommendation.data.dao.MenuDao
 import com.example.lunchrecommendation.databinding.FrgMenuBinding
 import com.example.lunchrecommendation.view.adapter.MenuTabListAdapter
-import com.example.lunchrecommendation.view.menu.FrgChinaFood
-import com.example.lunchrecommendation.view.menu.FrgFastFood
-import com.example.lunchrecommendation.view.menu.FrgJapanFood
-import com.example.lunchrecommendation.view.menu.FrgKoreaFood
-import com.example.lunchrecommendation.view.menu.FrgNoodle
-import com.example.lunchrecommendation.view.menu.FrgSnackBar
-import com.example.lunchrecommendation.view.menu.FrgWestFood
+import com.example.lunchrecommendation.view.menu.fragment.FrgChinaFood
+import com.example.lunchrecommendation.view.menu.fragment.FrgFastFood
+import com.example.lunchrecommendation.view.menu.fragment.FrgJapanFood
+import com.example.lunchrecommendation.view.menu.fragment.FrgKoreaFood
+import com.example.lunchrecommendation.view.menu.fragment.FrgNoodle
+import com.example.lunchrecommendation.view.menu.fragment.FrgSnackBar
+import com.example.lunchrecommendation.view.menu.fragment.FrgWestFood
 import dagger.hilt.android.AndroidEntryPoint
 
 /**

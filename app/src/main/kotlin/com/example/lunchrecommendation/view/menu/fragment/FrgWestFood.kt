@@ -1,4 +1,4 @@
-package com.example.lunchrecommendation.view.menu
+package com.example.lunchrecommendation.view.menu.fragment
 
 import android.os.Bundle
 import android.view.LayoutInflater
@@ -13,10 +13,10 @@ import com.example.lunchrecommendation.view.util.MenuListUtil
 import dagger.hilt.android.AndroidEntryPoint
 
 /**
- * 메뉴 탭 - 패스트 푸드
+ * 메뉴 탭 - 양식
  */
 @AndroidEntryPoint
-class FrgFastFood : BaseFragment<FrgMenuListBinding>() {
+class FrgWestFood : BaseFragment<FrgMenuListBinding>() {
 
     // 메뉴 리스트 어댑터
     private lateinit var mAdapter: MenuListAdapter
@@ -29,7 +29,7 @@ class FrgFastFood : BaseFragment<FrgMenuListBinding>() {
     override fun initData() {
 
         mData.clear()
-        mData.addAll(MenuListUtil.fastFood())
+        mData.addAll(MenuListUtil.westFood())
     }
 
     override fun initView() { initRecyclerView() }
@@ -53,7 +53,7 @@ class FrgFastFood : BaseFragment<FrgMenuListBinding>() {
                     layoutManager = GridLayoutManager(ctx, spanCount)
                     adapter = mAdapter
                     addItemDecoration(GridLayoutItemDecoration(context, itemGap, itemGap, spanCount))
-                    isNestedScrollingEnabled = true
+                    isNestedScrollingEnabled = false
                     mAdapter.selectItem = object : MenuListAdapter.SelectItem {
 
                         override fun selectItem(position: Int) {
@@ -70,8 +70,8 @@ class FrgFastFood : BaseFragment<FrgMenuListBinding>() {
 
     companion object {
 
-        fun newInstance(): FrgFastFood {
-            return FrgFastFood().apply {
+        fun newInstance(): FrgWestFood {
+            return FrgWestFood().apply {
                 arguments = Bundle().apply {}
             }
         }

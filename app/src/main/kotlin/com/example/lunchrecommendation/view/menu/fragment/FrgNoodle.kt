@@ -1,4 +1,4 @@
-package com.example.lunchrecommendation.view.menu
+package com.example.lunchrecommendation.view.menu.fragment
 
 import android.os.Bundle
 import android.view.LayoutInflater
@@ -9,27 +9,23 @@ import com.example.lunchrecommendation.component.GridLayoutItemDecoration
 import com.example.lunchrecommendation.data.dao.MenuDao
 import com.example.lunchrecommendation.databinding.FrgMenuListBinding
 import com.example.lunchrecommendation.view.adapter.MenuListAdapter
-import com.example.lunchrecommendation.view.util.MenuListUtil
 import dagger.hilt.android.AndroidEntryPoint
 
 /**
- * 메뉴 탭 - 분식
+ * 메뉴 탭 - 면
  */
 @AndroidEntryPoint
-class FrgSnackBar : BaseFragment<FrgMenuListBinding>() {
+class FrgNoodle : BaseFragment<FrgMenuListBinding>() {
 
     // 메뉴 리스트 어댑터
     private lateinit var mAdapter: MenuListAdapter
+
     // 메뉴 리스트 데이터
     private val mData: ArrayList<MenuDao> = ArrayList()
 
     override fun getViewBinding(inflater: LayoutInflater, container: ViewGroup?) = FrgMenuListBinding.inflate(inflater, container, false)
 
     override fun initData() {
-
-        // 더미 데이터
-        mData.clear()
-        mData.addAll(MenuListUtil.snackBar())
     }
 
     override fun initView() { initRecyclerView() }
@@ -53,7 +49,7 @@ class FrgSnackBar : BaseFragment<FrgMenuListBinding>() {
                     layoutManager = GridLayoutManager(ctx, spanCount)
                     adapter = mAdapter
                     addItemDecoration(GridLayoutItemDecoration(context, itemGap, itemGap, spanCount))
-                    isNestedScrollingEnabled = false
+                    isNestedScrollingEnabled = true
                     mAdapter.selectItem = object : MenuListAdapter.SelectItem {
 
                         override fun selectItem(position: Int) {
@@ -70,8 +66,8 @@ class FrgSnackBar : BaseFragment<FrgMenuListBinding>() {
 
     companion object {
 
-        fun newInstance(): FrgSnackBar {
-            return FrgSnackBar().apply {
+        fun newInstance(): FrgNoodle {
+            return FrgNoodle().apply {
                 arguments = Bundle().apply {}
             }
         }

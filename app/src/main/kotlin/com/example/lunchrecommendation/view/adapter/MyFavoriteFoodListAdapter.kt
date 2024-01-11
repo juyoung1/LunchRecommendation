@@ -5,20 +5,21 @@ import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import androidx.recyclerview.widget.RecyclerView
+import com.bumptech.glide.Glide
 import com.example.lunchrecommendation.data.dao.MenuDao
-import com.example.lunchrecommendation.databinding.ItemTabMenuListBinding
+import com.example.lunchrecommendation.databinding.ItemMyLikeFoodListBinding
 
 /**
- * 메뉴 - 상단 메뉴 탭 어댑터
+ * 내 찜 목록 어댑터
  */
-class MenuTabListAdapter(val context: Context?, private val list: ArrayList<MenuDao>): RecyclerView.Adapter<MenuTabListAdapter.CustomViewHolder>() {
+class MyFavoriteFoodListAdapter(val context: Context?, private val list: ArrayList<MenuDao>): RecyclerView.Adapter<MyFavoriteFoodListAdapter.CustomViewHolder>() {
 
     interface SelectItem { fun selectItem(position: Int) }
     var selectItem: SelectItem? = null
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): CustomViewHolder {
 
-        val binding = ItemTabMenuListBinding.inflate(LayoutInflater.from(context))
+        val binding = ItemMyLikeFoodListBinding.inflate(LayoutInflater.from(context))
         return CustomViewHolder(binding)
     }
 
@@ -33,7 +34,7 @@ class MenuTabListAdapter(val context: Context?, private val list: ArrayList<Menu
         }
     }
 
-    inner class CustomViewHolder(private val binding: ItemTabMenuListBinding): RecyclerView.ViewHolder(binding.root) {
+    inner class CustomViewHolder(private val binding: ItemMyLikeFoodListBinding): RecyclerView.ViewHolder(binding.root) {
 
         fun binding(context: Context?, position: Int, dao: MenuDao, selectItem: SelectItem?) {
 
@@ -41,11 +42,9 @@ class MenuTabListAdapter(val context: Context?, private val list: ArrayList<Menu
 
                 context?.let { ctx ->
 
-                    // 메뉴 카테고리 이름
-                    tvMenu.text = dao.menu
+                    // 찜한 메뉴 이미지
+                    Glide.with(ctx).load(dao.menuImage).into(ivFood)
 
-                    clItem.isSelected = dao.isSelected
-                    clItem.setClickListener(position, selectItem)
                 }
             }
         }

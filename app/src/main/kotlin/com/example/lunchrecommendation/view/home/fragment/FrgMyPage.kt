@@ -3,12 +3,15 @@ package com.example.lunchrecommendation.view.home.fragment
 import android.content.Intent
 import android.os.Bundle
 import android.view.LayoutInflater
+import android.view.View
 import android.view.ViewGroup
+import com.bumptech.glide.Glide
 import com.example.lunchrecommendation.R
 import com.example.lunchrecommendation.base.BaseFragment
 import com.example.lunchrecommendation.databinding.FrgMyPageBinding
 import com.example.lunchrecommendation.util.PreferencesUtil
 import com.example.lunchrecommendation.view.dialog.SheetProfileEdit
+import com.example.lunchrecommendation.view.mypage.ActMyLikeFoodList
 import com.example.lunchrecommendation.view.nickname.ActNickName
 import dagger.hilt.android.AndroidEntryPoint
 
@@ -39,11 +42,19 @@ class FrgMyPage : BaseFragment<FrgMyPageBinding>() {
 
         with(mBinding) {
 
-            tvNickName.text = PreferencesUtil.getPreferencesString("nickName")
-
             incMyFavorite.tvTitle.text = getString(R.string.home_text_3)
             incMyFood.tvTitle.text = getString(R.string.home_text_4)
             incAppInfo.tvTitle.text = getString(R.string.home_text_5)
+
+            // 닉네임
+            tvNickName.text = PreferencesUtil.getPreferencesString("nickName")
+
+            // 프로필 이미지
+            if (PreferencesUtil.getPreferencesString("profileImage").isNotEmpty()) {
+
+                ivNoProfile.visibility = View.GONE
+                Glide.with(requireContext()).load(PreferencesUtil.getPreferencesString("profileImage")).into(ivProfile)
+            }
         }
     }
 
@@ -58,8 +69,21 @@ class FrgMyPage : BaseFragment<FrgMyPageBinding>() {
             clProfileEdit.setOnClickListener {
 
                 sheetProfileEdit?.dismiss()
-                sheetProfileEdit = SheetProfileEdit { tvNickName.text = PreferencesUtil.getPreferencesString("nickName") }
+                sheetProfileEdit = SheetProfileEdit {
+                    tvNickName.text = PreferencesUtil.getPreferencesString("nickName")
+                    Glide.with(requireContext()).load(PreferencesUtil.getPreferencesString("profileImage")).into(ivProfile)
+                }
                 sheetProfileEdit?.show(parentFragmentManager, "")
+            }
+
+            // 내 찜 목록
+            incMyFavorite.clItem.setOnClickListener {
+
+                Intent(context, ActMyLikeFoodList::class.java).apply {
+
+                    flags = Intent.FLAG_ACTIVITY_CLEAR_TOP
+                    startActivity(this)
+                }
             }
 
             // 내정보 초기화
@@ -69,6 +93,8 @@ class FrgMyPage : BaseFragment<FrgMyPageBinding>() {
                     {
                         PreferencesUtil.deletePreferences("nickName")
                         PreferencesUtil.deletePreferences("favoriteFood")
+                        PreferencesUtil.deletePreferences("profileImage")
+                        PreferencesUtil.deletePreferencesStringSet("myLikeFood")
                         moveToNickName()
                     },
                     false

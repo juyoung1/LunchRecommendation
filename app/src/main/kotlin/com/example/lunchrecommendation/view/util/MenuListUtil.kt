@@ -39,7 +39,7 @@ object MenuListUtil {
             "초밥", "육회", "회", "장어 덮밥", "라멘", "돈카츠", "텐동", "소바", "돈카츠 덮밥", "카레", "오므라이스", "연어 덮밥", "우동")
 
         val menuImages = listOf(
-            "https://cdn.pixabay.com/photo/2020/10/11/10/05/meal-5645374_1280.jpg",
+            "https://cdn.pixabay.com/photo/2015/12/08/19/08/steak-1083567_1280.jpg",
             "https://cdn.pixabay.com/photo/2015/01/13/06/45/meat-597951_1280.jpg",
         )
 
@@ -55,7 +55,7 @@ object MenuListUtil {
         )
 
         val menuImages = listOf(
-            "https://cdn.pixabay.com/photo/2020/10/11/10/05/meal-5645374_1280.jpg",
+            "https://cdn.pixabay.com/photo/2015/12/08/19/08/steak-1083567_1280.jpg",
         )
 
         return createMenuList(menuTitles, menuImages)
@@ -84,7 +84,7 @@ object MenuListUtil {
             "피자", "치킨", "햄버거", "핫도그", "샌드위치", "토스트", "타코")
 
         val menuImages = listOf(
-            "https://cdn.pixabay.com/photo/2020/10/11/10/05/meal-5645374_1280.jpg",
+            "https://cdn.pixabay.com/photo/2015/12/08/19/08/steak-1083567_1280.jpg",
         )
 
         return createMenuList(menuTitles, menuImages)
@@ -94,7 +94,7 @@ object MenuListUtil {
         return menuTitles.zip(menuImages) { title, image ->
             MenuDao().apply {
                 menu = title
-                file = image
+                menuImage = image
             }
         }
     }
