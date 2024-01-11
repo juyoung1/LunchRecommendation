@@ -12,6 +12,7 @@ import com.example.lunchrecommendation.databinding.FrgMyPageBinding
 import com.example.lunchrecommendation.util.PreferencesUtil
 import com.example.lunchrecommendation.view.dialog.SheetProfileEdit
 import com.example.lunchrecommendation.view.mypage.ActMyLikeFoodList
+import com.example.lunchrecommendation.view.mypage.ActTakePictureFood
 import com.example.lunchrecommendation.view.nickname.ActNickName
 import dagger.hilt.android.AndroidEntryPoint
 
@@ -80,6 +81,16 @@ class FrgMyPage : BaseFragment<FrgMyPageBinding>() {
             incMyFavorite.clItem.setOnClickListener {
 
                 Intent(context, ActMyLikeFoodList::class.java).apply {
+
+                    flags = Intent.FLAG_ACTIVITY_CLEAR_TOP
+                    startActivity(this)
+                }
+            }
+
+            // 내가 찍은 음식
+            incMyFood.clItem.setOnClickListener {
+
+                Intent(context, ActTakePictureFood::class.java).apply {
 
                     flags = Intent.FLAG_ACTIVITY_CLEAR_TOP
                     startActivity(this)

@@ -35,14 +35,23 @@ object MenuListUtil {
      * 일식
      */
     fun japanFood(): List<MenuDao> {
-        val menuTitles = listOf(
-            "초밥", "육회", "회", "장어 덮밥", "라멘", "돈카츠", "텐동", "소바", "돈카츠 덮밥", "카레", "오므라이스", "연어 덮밥", "우동")
+        val menuTitles = listOf("초밥", "육회", "회", "장어 덮밥", "라멘", "돈카츠", "텐동", "소바", "규동", "카레", "오므라이스", "연어 덮밥", "우동")
 
         val menuImages = listOf(
-            "https://cdn.pixabay.com/photo/2015/12/08/19/08/steak-1083567_1280.jpg",
+            "https://cdn.pixabay.com/photo/2015/10/06/19/10/sushi-975075_1280.jpg",
             "https://cdn.pixabay.com/photo/2015/01/13/06/45/meat-597951_1280.jpg",
+            "https://cdn.pixabay.com/photo/2020/03/30/17/45/japanese-food-4984955_1280.jpg",
+            "https://cdn.pixabay.com/photo/2017/06/13/15/16/eel-2399145_1280.jpg",
+            "https://cdn.pixabay.com/photo/2018/03/15/10/33/bars-ramen-in-saigon-3227779_1280.jpg",
+            "https://cdn.pixabay.com/photo/2016/09/23/23/23/restaurant-1690696_1280.jpg",
+            "https://cdn.pixabay.com/photo/2016/11/01/16/46/shrimp-tempura-1788864_1280.jpg",
+            "https://cdn.pixabay.com/photo/2022/10/01/04/04/soba-7490600_1280.jpg",
+            "https://cdn.pixabay.com/photo/2015/04/06/14/11/lunch-709423_1280.jpg",
+            "https://cdn.pixabay.com/photo/2015/10/01/14/29/curry-967086_1280.jpg",
+            "https://cdn.pixabay.com/photo/2015/04/21/17/29/omurice-733566_1280.jpg",
+            "https://cdn.pixabay.com/photo/2019/11/25/15/19/salmon-4652298_1280.jpg",
+            "https://cdn.pixabay.com/photo/2021/10/08/13/25/udon-6691341_1280.jpg",
         )
-
         return createMenuList(menuTitles, menuImages)
     }
 
@@ -50,14 +59,15 @@ object MenuListUtil {
      * 양식
      */
     fun westFood(): List<MenuDao> {
-        val menuTitles = listOf(
-            "스테이크", "파스타", "리조또", "스파게티", "감바스", "필라프",
-        )
+        val menuTitles = listOf("스테이크", "파스타", "리조또", "감바스", "필라프")
 
         val menuImages = listOf(
             "https://cdn.pixabay.com/photo/2015/12/08/19/08/steak-1083567_1280.jpg",
+            "https://cdn.pixabay.com/photo/2018/07/18/19/12/pasta-3547078_1280.jpg",
+            "https://cdn.pixabay.com/photo/2022/10/30/05/42/pumpkin-risotto-7556652_1280.jpg",
+            "https://cdn.pixabay.com/photo/2021/01/16/08/10/gambas-al-high-5921367_1280.jpg",
+            "https://cdn.pixabay.com/photo/2016/03/05/01/45/seafood-pilaf-1237030_1280.jpg"
         )
-
         return createMenuList(menuTitles, menuImages)
     }
 
@@ -71,7 +81,6 @@ object MenuListUtil {
         val menuImages = listOf(
             "https://cdn.pixabay.com/photo/2017/08/08/09/44/food-photography-2610864_1280.jpg",
         )
-
         return createMenuList(menuTitles, menuImages)
     }
 
@@ -86,7 +95,6 @@ object MenuListUtil {
         val menuImages = listOf(
             "https://cdn.pixabay.com/photo/2015/12/08/19/08/steak-1083567_1280.jpg",
         )
-
         return createMenuList(menuTitles, menuImages)
     }
 

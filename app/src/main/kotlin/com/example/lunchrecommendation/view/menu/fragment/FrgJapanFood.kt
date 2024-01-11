@@ -8,14 +8,13 @@ import com.example.lunchrecommendation.base.BaseFragment
 import com.example.lunchrecommendation.component.GridLayoutItemDecoration
 import com.example.lunchrecommendation.data.dao.MenuDao
 import com.example.lunchrecommendation.databinding.FrgMenuListBinding
+import com.example.lunchrecommendation.util.PreferencesUtil
 import com.example.lunchrecommendation.view.adapter.MenuListAdapter
 import com.example.lunchrecommendation.view.util.MenuListUtil
-import dagger.hilt.android.AndroidEntryPoint
 
 /**
- * 홈 - 마이 페이지
+ * 메뉴 탭 - 일식
  */
-@AndroidEntryPoint
 class FrgJapanFood : BaseFragment<FrgMenuListBinding>() {
 
     // 메뉴 리스트 어댑터
@@ -24,12 +23,19 @@ class FrgJapanFood : BaseFragment<FrgMenuListBinding>() {
     // 메뉴 리스트 데이터
     private val mData: ArrayList<MenuDao> = ArrayList()
 
+    // 내가 찜했던 메뉴
+    private val myLikedFood = PreferencesUtil.getPreferencesStringSet("myLikeFood")
+
     override fun getViewBinding(inflater: LayoutInflater, container: ViewGroup?) = FrgMenuListBinding.inflate(inflater, container, false)
 
     override fun initData() {
 
         mData.clear()
         mData.addAll(MenuListUtil.japanFood())
+
+        for (item in mData) {
+            item.isSelected = myLikedFood.contains(item.menuImage.toString())
+        }
     }
 
     override fun initView() { initRecyclerView() }
@@ -53,13 +59,22 @@ class FrgJapanFood : BaseFragment<FrgMenuListBinding>() {
                     layoutManager = GridLayoutManager(ctx, spanCount)
                     adapter = mAdapter
                     addItemDecoration(GridLayoutItemDecoration(context, itemGap, itemGap, spanCount))
-                    isNestedScrollingEnabled = true
                     mAdapter.selectItem = object : MenuListAdapter.SelectItem {
 
                         override fun selectItem(position: Int) {
 
                             if (mData.size > position) {
 
+                                val selectItem = mData[position]
+
+                                // 찜 하기
+                                selectItem.isSelected = !selectItem.isSelected
+
+                                // 찜한 이미지 PreferenceUtil 에 저장
+                                val myLikeFood = mData.filter { it.isSelected }.map { it.menuImage.toString() }.toSet()
+                                PreferencesUtil.setPreferencesStringSet("myLikeFood", myLikeFood)
+
+                                mAdapter.notifyDataSetChanged()
                             }
                         }
                     }
