@@ -24,12 +24,13 @@
                 android:layout_height="match_parent"
                 android:paddingBottom="24dp">
 
+                <!-- 타이틀 -->
                 <androidx.appcompat.widget.AppCompatTextView
                     android:id="@+id/tvTitle"
                     style="@style/sharpsansBold.18"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:layout_marginTop="20dp"
+                    android:layout_marginTop="40dp"
                     android:text="@string/sheet_text_1"
                     android:textColor="@color/black"
                     app:layout_constraintEnd_toEndOf="parent"
@@ -41,7 +42,7 @@
                     android:id="@+id/cvProfile"
                     android:layout_width="90dp"
                     android:layout_height="90dp"
-                    android:layout_marginTop="15dp"
+                    android:layout_marginTop="20dp"
                     app:cardBackgroundColor="@color/color_f5f5f5"
                     app:cardCornerRadius="60dp"
                     app:cardElevation="0dp"
@@ -87,6 +88,7 @@
 
                 </androidx.constraintlayout.widget.ConstraintLayout>
 
+                <!-- 닉네임 설정 -->
                 <TextView
                     android:id="@+id/tvNickName"
                     style="@style/sharpsansMedium.14"
@@ -119,6 +121,7 @@
                     android:textSelectHandle="@drawable/edittext_text_handle"
                     app:layout_constraintTop_toBottomOf="@id/tvNickName" />
 
+                <!-- 닉네임 8자리 넘어갈 시 경고 -->
                 <androidx.appcompat.widget.AppCompatTextView
                     android:id="@+id/tvWarningA"
                     style="@style/robotoMedium.11"
@@ -132,6 +135,7 @@
                     app:layout_constraintStart_toStartOf="parent"
                     app:layout_constraintTop_toBottomOf="@id/etNickName" />
 
+                <!-- 최애 메뉴 설정 -->
                 <TextView
                     android:id="@+id/tvFavoriteMenu"
                     style="@style/sharpsansMedium.14"
@@ -166,6 +170,7 @@
                     android:textSelectHandle="@drawable/edittext_text_handle"
                     app:layout_constraintTop_toBottomOf="@id/tvFavoriteMenu" />
 
+                <!-- 최애 음식 8자리 넘어갈 시 경고 -->
                 <androidx.appcompat.widget.AppCompatTextView
                     android:id="@+id/tvWarningB"
                     style="@style/robotoMedium.11"

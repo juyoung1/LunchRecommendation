@@ -55,6 +55,7 @@ class ActMyLikeFoodList : BaseContractActivity<ActMyLikeFoodListBinding>() {
 
         with(mBinding) {
 
+            // 헤더
             incHeader.tvTitle.text = getString(R.string.home_text_3)
 
             if (myLikedFood.isEmpty()) {
@@ -72,7 +73,7 @@ class ActMyLikeFoodList : BaseContractActivity<ActMyLikeFoodListBinding>() {
 
         with(mBinding) {
 
-            // 뒤로 가기
+            /** 뒤로 가기 */
             incHeader.ivBack.setOnClickListener { onBackPressed() }
         }
     }
@@ -100,6 +101,9 @@ class ActMyLikeFoodList : BaseContractActivity<ActMyLikeFoodListBinding>() {
 
                         if (mData.size > position) {
 
+                            mData.removeAt(position)
+                            mAdapter.notifyItemRemoved(position)
+                            mAdapter.notifyDataSetChanged()
                         }
                     }
                 }

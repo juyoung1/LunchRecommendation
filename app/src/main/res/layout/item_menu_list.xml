@@ -33,6 +33,7 @@
 
         </androidx.cardview.widget.CardView>
 
+        <!-- 찜 -->
         <androidx.appcompat.widget.AppCompatImageView
             android:id="@+id/ivHeart"
             android:layout_width="wrap_content"
@@ -42,6 +43,7 @@
             app:layout_constraintBottom_toBottomOf="@id/cvProfile"
             app:layout_constraintEnd_toEndOf="@id/cvProfile" />
 
+        <!-- 메뉴 이름 -->
         <androidx.appcompat.widget.AppCompatTextView
             android:id="@+id/tvMenu"
             style="@style/sharpsansBold.14"

@@ -13,11 +13,12 @@
         app:layout_constraintTop_toTopOf="parent" />
 
     <androidx.appcompat.widget.AppCompatTextView
-        android:id="@+id/tvNoLikeFood"
-        style="@style/sharpsansBold.24"
+        android:id="@+id/tvNoFoodPhoto"
+        style="@style/robotoRegular.24"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:text="@string/home_text_8"
+        android:textColor="@color/color_999999"
         android:visibility="gone"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
@@ -28,6 +29,7 @@
         android:id="@+id/rvList"
         android:layout_width="match_parent"
         android:layout_height="0dp"
+        android:overScrollMode="never"
         app:layout_constraintBottom_toTopOf="@id/bottomView"
         app:layout_constraintTop_toBottomOf="@id/incHeader" />
 

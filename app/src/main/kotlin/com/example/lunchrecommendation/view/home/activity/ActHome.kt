@@ -46,12 +46,14 @@ class ActHome : BaseContractActivity<ActHomeBinding>() {
 
         with( mBinding ) {
 
+            // 메뉴
             incNaviMenu.apply {
 
                 tvNavi.text = getString(R.string.menu)
                 ivNavi.setImageResource(R.drawable.ic_menu)
             }
 
+            // 마이 페이지
             incNaviMyPage.apply {
 
                 tvNavi.text = getString(R.string.myPage)
@@ -67,7 +69,10 @@ class ActHome : BaseContractActivity<ActHomeBinding>() {
 
         with( mBinding ) {
 
+            /** 메뉴 탭 */
             incNaviMenu.btnNavi.setOnClickListener { changeMainFragment(Enum.Page.Menu) }
+
+            /** 마이 페이지 탭 */
             incNaviMyPage.btnNavi.setOnClickListener { changeMainFragment(Enum.Page.MyPage) }
         }
     }

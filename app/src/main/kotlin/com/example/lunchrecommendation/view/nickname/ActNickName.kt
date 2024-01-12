@@ -16,6 +16,7 @@ import com.example.lunchrecommendation.view.home.activity.ActHome
  */
 class ActNickName : BaseContractActivity<ActNicknameBinding>() {
 
+    // 닉네임
     private var nickName = ""
 
     override fun getViewBinding() = ActNicknameBinding.inflate(layoutInflater)
@@ -41,8 +42,10 @@ class ActNickName : BaseContractActivity<ActNicknameBinding>() {
 
         with(mBinding) {
 
+            // 버튼 비활성화
             btnNext.isEnabled = false
 
+            // 헤더
             incHeader.tvTitle.text = getString(R.string.nick_name_text_1)
             incHeader.ivSetting.visibility = View.GONE
         }
@@ -55,6 +58,7 @@ class ActNickName : BaseContractActivity<ActNicknameBinding>() {
 
         with(mBinding) {
 
+            /** 다음 */
             btnNext.setOnClickListener {
 
                 PreferencesUtil.setPreferencesBoolean("nickNameView", true)
@@ -76,6 +80,7 @@ class ActNickName : BaseContractActivity<ActNicknameBinding>() {
 
         with(mBinding) {
 
+            // 닉네임 입력
             etNickName.apply {
 
                 addTextChangedListener(object : TextWatcher {

@@ -5,6 +5,7 @@
     android:layout_height="match_parent"
     android:background="@color/color_f5f5f5">
 
+    <!-- 헤더 -->
     <include
         android:id="@+id/incHeader"
         layout="@layout/inc_common_header"
@@ -12,6 +13,7 @@
         android:layout_height="50dp"
         app:layout_constraintTop_toTopOf="parent" />
 
+    <!-- 닉네임 -->
     <TextView
         android:id="@+id/tvTitle"
         style="@style/sharpsansMedium.14"
@@ -24,6 +26,7 @@
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@id/incHeader" />
 
+    <!-- 닉네임 입력 -->
     <androidx.appcompat.widget.AppCompatEditText
         android:id="@+id/etNickName"
         style="@style/sharpsansRegular.16"
@@ -45,6 +48,7 @@
         android:textSelectHandle="@drawable/edittext_text_handle"
         app:layout_constraintTop_toBottomOf="@id/tvTitle" />
 
+    <!-- 닉네임 8자리 넘을 시 경고 -->
     <androidx.appcompat.widget.AppCompatTextView
         android:id="@+id/tvWarning"
         style="@style/robotoMedium.11"
@@ -58,6 +62,7 @@
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@id/etNickName" />
 
+    <!-- 다음 버튼 -->
     <com.example.lunchrecommendation.view.custom.CommonButton
         android:id="@+id/btnNext"
         style="@style/sharpsansBold.16"

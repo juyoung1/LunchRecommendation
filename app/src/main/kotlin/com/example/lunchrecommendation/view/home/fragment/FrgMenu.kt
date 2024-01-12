@@ -75,6 +75,7 @@ class FrgMenu : BaseFragment<FrgMenuBinding>() {
 
             with(mBinding) {
 
+                // 메뉴 탭 리스트
                 rvList.apply {
 
                     mAdapter = MenuTabListAdapter(ctx, menuTabList)

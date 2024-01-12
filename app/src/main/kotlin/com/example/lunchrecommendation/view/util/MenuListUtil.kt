@@ -9,7 +9,9 @@ object MenuListUtil {
      */
     fun koreaFood(): List<MenuDao> {
         val menuTitles = listOf(
-            "된장찌개", "김치찌개", "간장게장", "비빔밥", "감자탕", "국밥", "삼겹살", "돼지갈비", "김치찜", "불고기", "갈비탕", "닭갈비", "닭볶음탕", "부대찌개", "소고기", "족발", "보쌈", "오리 고기", "김치 볶음밥")
+            "된장찌개", "김치찌개", "간장게장", "비빔밥", "감자탕", "국밥", "삼겹살", "돼지갈비", "김치찜", "불고기", "갈비탕", "닭갈비", "닭볶음탕", "부대찌개", "소고기", "족발", "보쌈", "오리 고기", "김치 볶음밥",
+            "곱창"
+        )
 
         val menuImages = listOf(
             "https://cdn.pixabay.com/photo/2019/11/21/18/28/miso-soup-4643141_1280.jpg",
@@ -30,7 +32,8 @@ object MenuListUtil {
             "https://cdn.pixabay.com/photo/2020/01/29/07/46/ham-hocks-4801727_1280.jpg",
             "https://cdn.pixabay.com/photo/2020/01/29/07/46/bossam-4801728_1280.jpg",
             "https://cdn.pixabay.com/photo/2016/12/27/09/17/duck-meat-1933542_1280.jpg",
-            "https://cdn.pixabay.com/photo/2014/01/09/10/14/kimchi-fried-rice-241051_1280.jpg"
+            "https://cdn.pixabay.com/photo/2014/01/09/10/14/kimchi-fried-rice-241051_1280.jpg",
+            "https://cdn.pixabay.com/photo/2015/04/22/06/57/gopchang-734303_1280.jpg"
         )
 
         return createMenuList(menuTitles, menuImages)
@@ -40,11 +43,21 @@ object MenuListUtil {
      * 면
      */
     fun noodle(): List<MenuDao> {
-        val menuTitles = listOf("라면", "짜장면", "우동", "라멘", "파스타", "볶음면", "짬뽕", "칼국수", "잔치 국수", "쌀국수")
+        val menuTitles = listOf("라면", "짜장면", "우동", "라멘", "파스타", "볶음면", "짬뽕", "칼국수", "잔치 국수", "쌀국수", "짜파게티")
 
         val menuImages = listOf(
-            "https://cdn.pixabay.com/photo/2015/12/08/19/08/steak-1083567_1280.jpg",
-        )
+            "https://cdn.pixabay.com/photo/2020/09/17/12/25/ramen-5579023_1280.jpg",
+            "https://cdn.pixabay.com/photo/2017/07/27/16/45/i-2545938_1280.jpg",
+            "https://cdn.pixabay.com/photo/2021/10/08/13/25/udon-6691341_1280.jpg",
+            "https://cdn.pixabay.com/photo/2018/03/15/10/33/bars-ramen-in-saigon-3227779_1280.jpg",
+            "https://cdn.pixabay.com/photo/2018/07/18/19/12/pasta-3547078_1280.jpg",
+            "https://cdn.pixabay.com/photo/2013/10/31/14/17/if-the-203517_1280.jpg",
+            "https://cdn.pixabay.com/photo/2021/02/11/01/58/jambong-6004032_1280.jpg",
+            "https://cdn.pixabay.com/photo/2014/09/24/09/30/seafood-458853_1280.jpg",
+            "https://cdn.pixabay.com/photo/2018/05/19/23/51/noodles-3414665_1280.jpg",
+            "https://cdn.pixabay.com/photo/2016/02/18/06/42/vietnam-1206576_1280.jpg",
+            "https://cdn.pixabay.com/photo/2021/02/11/02/00/chapaguri-6004034_1280.jpg"
+            )
         return createMenuList(menuTitles, menuImages)
     }
 
@@ -52,7 +65,7 @@ object MenuListUtil {
      * 일식
      */
     fun japanFood(): List<MenuDao> {
-        val menuTitles = listOf("초밥", "육회", "회", "장어 덮밥", "라멘", "돈카츠", "텐동", "소바", "규동", "카레", "오므라이스", "연어 덮밥", "우동")
+        val menuTitles = listOf("초밥", "육회", "회", "장어 덮밥", "라멘", "돈카츠", "텐동", "소바", "규동", "카레", "오므라이스", "연어 덮밥", "우동", "주먹밥")
 
         val menuImages = listOf(
             "https://cdn.pixabay.com/photo/2015/10/06/19/10/sushi-975075_1280.jpg",
@@ -68,6 +81,7 @@ object MenuListUtil {
             "https://cdn.pixabay.com/photo/2015/04/21/17/29/omurice-733566_1280.jpg",
             "https://cdn.pixabay.com/photo/2019/11/25/15/19/salmon-4652298_1280.jpg",
             "https://cdn.pixabay.com/photo/2021/10/08/13/25/udon-6691341_1280.jpg",
+            "https://cdn.pixabay.com/photo/2016/12/20/03/27/rice-ball-1919631_1280.jpg"
         )
         return createMenuList(menuTitles, menuImages)
     }
@@ -76,12 +90,16 @@ object MenuListUtil {
      * 중식
      */
     fun chinaFood(): List<MenuDao> {
-        val menuTitles = listOf(
-            "짜장면", "짬뽕", "탕수육", "깐풍기", "볶음밥", "가지 덮밥", "깐쇼 새우", "팔보채", "난자완스", "동파육", "마라탕")
+        val menuTitles = listOf("짜장면", "짬뽕", "탕수육", "유산슬", "볶음밥", "멘보샤")
 
         val menuImages = listOf(
-            "https://cdn.pixabay.com/photo/2017/08/08/09/44/food-photography-2610864_1280.jpg",
-        )
+            "https://cdn.pixabay.com/photo/2017/07/27/16/45/i-2545938_1280.jpg",
+            "https://cdn.pixabay.com/photo/2021/02/11/01/58/jambong-6004032_1280.jpg",
+            "https://cdn.pixabay.com/photo/2018/04/26/08/01/food-3351333_1280.jpg",
+            "https://cdn.pixabay.com/photo/2018/12/04/15/20/chinese-3855832_1280.jpg",
+            "https://cdn.pixabay.com/photo/2020/08/22/14/49/fried-rice-5508576_1280.jpg",
+            "https://cdn.pixabay.com/photo/2019/12/01/15/08/bread-sticks-4665683_1280.jpg"
+            )
         return createMenuList(menuTitles, menuImages)
     }
 
@@ -107,7 +125,7 @@ object MenuListUtil {
      */
     fun snackBar(): List<MenuDao> {
         val menuTitles = listOf(
-            "김밥", "떡볶이", "순대", "라면", "돈가스", "튀김", "어묵", "유부 초밥", "즉석 떡볶이", "만두")
+            "김밥", "떡볶이", "순대", "라면", "돈가스", "튀김", "어묵", "유부 초밥", "즉석 떡볶이", "만두", "핫도그")
 
         val menuImages = listOf(
             "https://cdn.pixabay.com/photo/2017/08/08/09/44/food-photography-2610864_1280.jpg",
@@ -119,7 +137,8 @@ object MenuListUtil {
             "https://cdn.pixabay.com/photo/2015/03/24/13/22/food-687613_1280.jpg",
             "https://cdn.pixabay.com/photo/2014/02/03/15/44/bob-257462_1280.jpg",
             "https://cdn.pixabay.com/photo/2018/11/04/09/08/toppokki-3793393_1280.jpg",
-            "https://cdn.pixabay.com/photo/2016/02/17/10/41/dumplings-1204814_1280.jpg"
+            "https://cdn.pixabay.com/photo/2016/02/17/10/41/dumplings-1204814_1280.jpg",
+            "https://cdn.pixabay.com/photo/2019/12/17/08/26/food-4701098_1280.jpg"
         )
         return createMenuList(menuTitles, menuImages)
     }

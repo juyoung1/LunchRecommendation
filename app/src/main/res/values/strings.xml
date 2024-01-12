@@ -8,7 +8,7 @@
     <string name="confirm">확인</string>
     <string name="close">닫기</string>
 
-    <string name="nick_name_text_1">닉네임 입력</string>
+    <string name="nick_name_text_1">닉네임</string>
     <string name="nick_name_text_2">닉네임 설정</string>
     <string name="nick_name_text_3">닉네임을 입력해주세요.(1자 ~ 8자)</string>
     <string name="nick_name_text_4">! 닉네임은 8자리 까지 입력할 수 있습니다</string>
@@ -26,7 +26,7 @@
     <string name="home_text_11">연락처:</string>
     <string name="home_text_12">이메일:</string>
     <string name="home_text_13">버전 정보</string>
-    <string name="home_text_14"><u>010-3705-8058</u></string>
+    <string name="home_text_14"><u>lkckss1234@gmail.com</u></string>
 
     <string name="sheet_text_1">프로필을 설정해보세요</string>
     <string name="sheet_text_2">프로필 사진 설정</string>

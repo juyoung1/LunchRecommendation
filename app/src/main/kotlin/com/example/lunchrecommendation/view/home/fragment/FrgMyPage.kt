@@ -71,7 +71,7 @@ class FrgMyPage : BaseFragment<FrgMyPageBinding>() {
 
             with(mBinding) {
 
-                // 프로필 수정
+                /** 프로필 수정 */
                 clProfileEdit.setOnClickListener {
 
                     sheetProfileEdit?.dismiss()
@@ -82,7 +82,7 @@ class FrgMyPage : BaseFragment<FrgMyPageBinding>() {
                     sheetProfileEdit?.show(parentFragmentManager, "")
                 }
 
-                // 내 찜 목록
+                /** 내 찜 목록 */
                 incMyFavorite.clItem.setOnClickListener {
 
                     Intent(context, ActMyLikeFoodList::class.java).apply {
@@ -92,7 +92,7 @@ class FrgMyPage : BaseFragment<FrgMyPageBinding>() {
                     }
                 }
 
-                // 내가 찍은 음식
+                /** 내가 찍은 음식 */
                 incMyFood.clItem.setOnClickListener {
 
                     Intent(context, ActTakePictureFood::class.java).apply {
@@ -102,7 +102,7 @@ class FrgMyPage : BaseFragment<FrgMyPageBinding>() {
                     }
                 }
 
-                // 앱 정보
+                /** 앱 정보 */
                 incAppInfo.clItem.setOnClickListener {
 
                     Intent(context, ActAppInfo::class.java).apply {
@@ -112,7 +112,7 @@ class FrgMyPage : BaseFragment<FrgMyPageBinding>() {
                     }
                 }
 
-                // 내정보 초기화
+                /** 내정보 초기화 */
                 tvReset.setOnClickListener {
 
                     openPopup(getString(R.string.popup_text_1), getString(R.string.popup_text_4), getString(R.string.popup_text_2), {}, getString(R.string.confirm),

@@ -10,6 +10,7 @@ import com.bumptech.glide.Glide
 import com.example.lunchrecommendation.data.dao.MenuDao
 import com.example.lunchrecommendation.databinding.ItemMyLikeFoodListBinding
 import com.example.lunchrecommendation.util.PreferencesUtil
+import com.example.lunchrecommendation.view.mypage.ActTakePictureFood
 
 /**
  * 내가 찍은 음식 리스트 어댑터
@@ -47,20 +48,15 @@ class TakePictureFoodListAdapter(val context: Context?, private val list: ArrayL
                     // 내가 찍은 음식 이미지
                     Glide.with(ctx).load(dao.menuImage).into(ivFood)
 
-                    // 아이템 없애기
-                    ivDelete.isSelected = dao.isSelected
-                    ivDelete.setClickListener(position, selectItem)
+                    // 찍은 이미지 삭제
+                    ivDelete.tag = position
+                    ivDelete.visibility = View.VISIBLE
+                    ivDelete.setOnClickListener {
+
+                        val pos = it.tag.toString().toInt()
+                        selectItem?.selectItem(pos)
+                    }
                 }
-            }
-        }
-
-        private fun View.setClickListener(position: Int, selectItem: SelectItem?) {
-
-            tag = position
-            setOnClickListener {
-
-                val pos = it.tag.toString().toInt()
-                selectItem?.selectItem(pos)
             }
         }
     }
@@ -71,9 +67,31 @@ class TakePictureFoodListAdapter(val context: Context?, private val list: ArrayL
         list.add(MenuDao(menuImage = photoUri.toString()))
 
         // 찍은 사진 저장
-        val saveFoodPhotos = list.map { it.menuImage.toString() }.toSet()
-        PreferencesUtil.setPreferencesStringSet("saveFoodPhotos", saveFoodPhotos)
+        saveFoodPhotos()
+        // 찍은 사진 없을 시 문구 노춡
+        (context as? ActTakePictureFood)?.noPhotoVisibility()
 
         notifyDataSetChanged()
+    }
+
+    // 찍은 이미지 삭제
+    fun removePhoto(position: Int) {
+
+        if (position in 0 until list.size) {
+            list.removeAt(position)
+            notifyItemRemoved(position)
+            notifyItemRangeChanged(position, itemCount)
+            saveFoodPhotos()
+
+            // 찍은 사진 없을 시 문구 노춡
+            (context as? ActTakePictureFood)?.noPhotoVisibility()
+        }
+    }
+
+    // 찍은 사진 저장
+    private fun saveFoodPhotos() {
+
+        val saveFoodPhotos = list.map { it.menuImage.toString() }.toSet()
+        PreferencesUtil.setPreferencesStringSet("saveFoodPhotos", saveFoodPhotos)
     }
 }

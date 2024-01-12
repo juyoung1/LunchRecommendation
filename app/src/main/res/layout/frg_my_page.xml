@@ -105,6 +105,7 @@
         android:background="@drawable/bg_my_page"
         android:orientation="vertical">
 
+        <!-- 내 찜 목록 -->
         <include
             android:id="@+id/incMyFavorite"
             layout="@layout/inc_my_page_more"
@@ -113,6 +114,7 @@
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toTopOf="parent" />
 
+        <!-- 내가 찍은 음식 -->
         <include
             android:id="@+id/incMyFood"
             layout="@layout/inc_my_page_more"
@@ -121,6 +123,7 @@
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toTopOf="parent" />
 
+        <!-- 앱 정보 -->
         <include
             android:id="@+id/incAppInfo"
             layout="@layout/inc_my_page_more"
@@ -131,6 +134,7 @@
 
     </androidx.appcompat.widget.LinearLayoutCompat>
 
+    <!-- 내 정보 초기화 -->
     <androidx.appcompat.widget.AppCompatTextView
         android:id="@+id/tvReset"
         style="@style/sharpsansBold.13"

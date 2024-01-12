@@ -7,6 +7,7 @@ import android.net.Uri
 import android.os.Build
 import android.os.Environment
 import android.provider.MediaStore
+import android.view.View
 import androidx.activity.result.ActivityResultLauncher
 import androidx.activity.result.contract.ActivityResultContracts
 import androidx.core.app.ActivityCompat
@@ -74,7 +75,11 @@ class ActTakePictureFood : BaseContractActivity<ActTakePictureFoodBinding>() {
 
         with(mBinding) {
 
+            // 헤더
             incHeader.tvTitle.text = getString(R.string.home_text_4)
+
+            // 찍은 음식 이미지 없을 시 노출
+            noPhotoVisibility()
         }
     }
 
@@ -85,10 +90,10 @@ class ActTakePictureFood : BaseContractActivity<ActTakePictureFoodBinding>() {
 
         with(mBinding) {
 
-            // 뒤로 가기
+            /** 뒤로 가기 */
             incHeader.ivBack.setOnClickListener { onBackPressed() }
 
-            // 사진 촬영
+            /** 사진 촬영 */
             tvCamera.setOnClickListener {
 
                 if (ContextCompat.checkSelfPermission(this@ActTakePictureFood, Manifest.permission.CAMERA) == PackageManager.PERMISSION_GRANTED) {
@@ -101,7 +106,7 @@ class ActTakePictureFood : BaseContractActivity<ActTakePictureFoodBinding>() {
                 }
             }
 
-            // 앨범에서 선택
+            /** 앨범에서 선택 */
             tvAlbum.setOnClickListener {
 
                 val galleryPermission = if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.TIRAMISU) {
@@ -147,12 +152,16 @@ class ActTakePictureFood : BaseContractActivity<ActTakePictureFoodBinding>() {
 
                         if (mData.size > position) {
 
+                            mAdapter.removePhoto(position)
                         }
                     }
                 }
             }
         }
     }
+
+    // 찍은 사진 없을 시 문구 노출
+    fun noPhotoVisibility() { mBinding.tvNoFoodPhoto.visibility = if (mData.isEmpty()) View.VISIBLE else View.GONE }
 
     // 카메라 실행
     private fun openCamera() {

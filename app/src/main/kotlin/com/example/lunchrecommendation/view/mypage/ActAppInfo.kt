@@ -2,7 +2,6 @@ package com.example.lunchrecommendation.view.mypage
 
 import android.content.Intent
 import android.net.Uri
-import android.widget.Toast
 import com.example.lunchrecommendation.R
 import com.example.lunchrecommendation.base.BaseContractActivity
 import com.example.lunchrecommendation.databinding.ActAppInfoBinding
@@ -36,6 +35,7 @@ class ActAppInfo : BaseContractActivity<ActAppInfoBinding>() {
 
         with(mBinding) {
 
+            // 헤더
             incHeader.tvTitle.text = getString(R.string.home_text_5)
         }
     }
@@ -47,27 +47,34 @@ class ActAppInfo : BaseContractActivity<ActAppInfoBinding>() {
 
         with(mBinding) {
 
-            // 뒤로 가기
+            /** 뒤로 가기 */
             incHeader.ivBack.setOnClickListener { onBackPressed() }
 
-            // 휴대폰 번호
-            tvPhoneNumber.setOnClickListener {
-
+            /** 휴대폰 번호 전화 */
+            /*tvPhoneNumber.setOnClickListener {
                 val phoneNumber = tvPhoneNumber.text.toString().trim()
 
                 val dialIntent = Intent(Intent.ACTION_DIAL).apply {
                     data = Uri.parse("tel:$phoneNumber")
                 }
 
-                if (dialIntent.resolveActivity(packageManager) != null) {
+                if (ContextCompat.checkSelfPermission(this@ActAppInfo, android.Manifest.permission.CALL_PHONE) == PackageManager.PERMISSION_GRANTED) {
+
+                    // 권한이 있으면 전화 걸기
                     startActivity(dialIntent)
                 } else {
-                    Toast.makeText(this@ActAppInfo, "전화가 지원되지 않습니다", Toast.LENGTH_SHORT).show()
+
+                    // 권한이 없으면 권한 요청
+                    ActivityCompat.requestPermissions(this@ActAppInfo, arrayOf(android.Manifest.permission.CALL_PHONE), 1001)
                 }
-            }
+            }*/
 
+            /** 이메일 보내기 */
             tvEmail.setOnClickListener {
+                val emailAddress = tvEmail.text.toString().trim()
 
+                val emailIntent = Intent(Intent.ACTION_SENDTO, Uri.fromParts("mailto", emailAddress, null))
+                startActivity(Intent.createChooser(emailIntent, ""))
             }
         }
     }

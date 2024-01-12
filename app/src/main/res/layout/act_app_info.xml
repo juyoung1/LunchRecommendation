@@ -5,6 +5,7 @@
     android:layout_height="match_parent"
     android:background="@color/color_f5f5f5">
 
+    <!-- 헤더 -->
     <include
         android:id="@+id/incHeader"
         layout="@layout/inc_common_header_back"
@@ -12,6 +13,7 @@
         android:layout_height="50dp"
         app:layout_constraintTop_toTopOf="parent" />
 
+    <!-- 앱 이름 -->
     <androidx.appcompat.widget.AppCompatTextView
         android:id="@+id/tvTitleA"
         style="@style/sharpsansBold.18"
@@ -30,12 +32,13 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginStart="8dp"
-        android:text="점메추"
+        android:text="점심메뉴추천"
         android:textColor="@color/color_999999"
         app:layout_constraintBottom_toBottomOf="@id/tvTitleA"
         app:layout_constraintStart_toEndOf="@id/tvTitleA"
         app:layout_constraintTop_toTopOf="@id/tvTitleA" />
 
+    <!-- 만든 사람 -->
     <androidx.appcompat.widget.AppCompatTextView
         android:id="@+id/tvTitleB"
         style="@style/sharpsansBold.18"
@@ -59,19 +62,20 @@
         app:layout_constraintStart_toEndOf="@id/tvTitleB"
         app:layout_constraintTop_toTopOf="@id/tvTitleB" />
 
+    <!-- 이메일 -->
     <androidx.appcompat.widget.AppCompatTextView
         android:id="@+id/tvTitleC"
         style="@style/sharpsansBold.18"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginTop="25dp"
-        android:text="@string/home_text_11"
+        android:text="@string/home_text_12"
         android:textColor="@color/black"
         app:layout_constraintStart_toStartOf="@id/tvTitleB"
         app:layout_constraintTop_toBottomOf="@id/tvTitleB" />
 
     <androidx.appcompat.widget.AppCompatTextView
-        android:id="@+id/tvPhoneNumber"
+        android:id="@+id/tvEmail"
         style="@style/robotoRegular.18"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
@@ -82,29 +86,7 @@
         app:layout_constraintStart_toEndOf="@id/tvTitleC"
         app:layout_constraintTop_toTopOf="@id/tvTitleC" />
 
-    <androidx.appcompat.widget.AppCompatTextView
-        android:id="@+id/tvTitleD"
-        style="@style/sharpsansBold.18"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginTop="25dp"
-        android:text="@string/home_text_12"
-        android:textColor="@color/black"
-        app:layout_constraintStart_toStartOf="@id/tvTitleC"
-        app:layout_constraintTop_toBottomOf="@id/tvTitleC" />
-
-    <androidx.appcompat.widget.AppCompatTextView
-        android:id="@+id/tvEmail"
-        style="@style/robotoRegular.18"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginStart="8dp"
-        android:text="lkckss1234@gmail.com"
-        android:textColor="@color/color_999999"
-        app:layout_constraintBottom_toBottomOf="@id/tvTitleD"
-        app:layout_constraintStart_toEndOf="@id/tvTitleD"
-        app:layout_constraintTop_toTopOf="@id/tvTitleD" />
-
+    <!-- 버전 정보 -->
     <androidx.appcompat.widget.AppCompatTextView
         android:id="@+id/tvVersion"
         style="@style/sharpsansBold.14"
@@ -113,7 +95,7 @@
         android:layout_marginTop="30dp"
         android:text="@string/home_text_13"
         android:textColor="@color/color_999999"
-        app:layout_constraintStart_toStartOf="@id/tvTitleD"
-        app:layout_constraintTop_toBottomOf="@id/tvTitleD" />
+        app:layout_constraintStart_toStartOf="@id/tvTitleC"
+        app:layout_constraintTop_toBottomOf="@id/tvTitleC" />
 
 </androidx.constraintlayout.widget.ConstraintLayout>

@@ -51,7 +51,6 @@ class SheetCameraGallery(private val imageCapturedCallback: (String) -> Unit) : 
     override fun initView() {
 
         setOnClickListener()
-        initDisplay()
     }
 
     override fun onCreateDialog(savedInstanceState: Bundle?): Dialog {
@@ -69,11 +68,6 @@ class SheetCameraGallery(private val imageCapturedCallback: (String) -> Unit) : 
     }
 
     /**
-     * Initialize Display
-     */
-    private fun initDisplay() {}
-
-    /**
      * Click Listener
      */
     private fun setOnClickListener() {
@@ -81,10 +75,10 @@ class SheetCameraGallery(private val imageCapturedCallback: (String) -> Unit) : 
 
             with(mBinding) {
 
-                // 닫기
+                /** 닫기 */
                 ivClose.setOnClickListener { dismiss() }
 
-                // 사진 촬영
+                /** 사진 촬영 */
                 clPhoto.setOnClickListener {
 
                     if (ContextCompat.checkSelfPermission(ctx, Manifest.permission.CAMERA) == PackageManager.PERMISSION_GRANTED) {
@@ -97,7 +91,7 @@ class SheetCameraGallery(private val imageCapturedCallback: (String) -> Unit) : 
                     }
                 }
 
-                // 앨범에서 선택
+                /** 앨범에서 선택 */
                 clGallery.setOnClickListener {
                     val galleryPermission = if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.TIRAMISU) {
                             Manifest.permission.READ_MEDIA_IMAGES

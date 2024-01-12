@@ -12,6 +12,7 @@
         android:background="@drawable/bg_sheet_radius_28"
         app:layout_constraintTop_toTopOf="parent">
 
+        <!-- 타이틀 -->
         <androidx.appcompat.widget.AppCompatTextView
             android:id="@+id/tvTitle"
             style="@style/sharpsansBold.16"
@@ -24,6 +25,7 @@
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toTopOf="parent" />
 
+        <!-- 닫기 -->
         <androidx.appcompat.widget.AppCompatImageView
             android:id="@+id/ivClose"
             android:layout_width="wrap_content"
@@ -47,6 +49,7 @@
             app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintTop_toBottomOf="@id/tvTitle">
 
+            <!-- 사진 촬영 -->
             <androidx.constraintlayout.widget.ConstraintLayout
                 android:id="@+id/clPhoto"
                 android:layout_width="0dp"
@@ -77,6 +80,7 @@
 
             </androidx.constraintlayout.widget.ConstraintLayout>
 
+            <!-- 앨범에서 선택 -->
             <androidx.constraintlayout.widget.ConstraintLayout
                 android:id="@+id/clGallery"
                 android:layout_width="0dp"

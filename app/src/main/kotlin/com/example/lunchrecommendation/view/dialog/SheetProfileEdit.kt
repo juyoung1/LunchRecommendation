@@ -16,7 +16,6 @@ import com.example.lunchrecommendation.databinding.SheetProfileEditBinding
 import com.example.lunchrecommendation.util.PreferencesUtil
 import com.google.android.material.bottomsheet.BottomSheetBehavior
 import com.google.android.material.bottomsheet.BottomSheetDialog
-import dagger.hilt.android.AndroidEntryPoint
 
 /**
  * 프로필 수정 바텀시트
