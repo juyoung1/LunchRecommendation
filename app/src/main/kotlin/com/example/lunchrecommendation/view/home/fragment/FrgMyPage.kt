@@ -11,6 +11,7 @@ import com.example.lunchrecommendation.base.BaseFragment
 import com.example.lunchrecommendation.databinding.FrgMyPageBinding
 import com.example.lunchrecommendation.util.PreferencesUtil
 import com.example.lunchrecommendation.view.dialog.SheetProfileEdit
+import com.example.lunchrecommendation.view.mypage.ActAppInfo
 import com.example.lunchrecommendation.view.mypage.ActMyLikeFoodList
 import com.example.lunchrecommendation.view.mypage.ActTakePictureFood
 import com.example.lunchrecommendation.view.nickname.ActNickName
@@ -27,8 +28,7 @@ class FrgMyPage : BaseFragment<FrgMyPageBinding>() {
 
     override fun getViewBinding(inflater: LayoutInflater, container: ViewGroup?) = FrgMyPageBinding.inflate(inflater, container, false)
 
-    override fun initData() {
-    }
+    override fun initData() {}
 
     override fun initView() {
 
@@ -41,20 +41,23 @@ class FrgMyPage : BaseFragment<FrgMyPageBinding>() {
      */
     private fun initDisplay() {
 
-        with(mBinding) {
+        context?.let { ctx ->
 
-            incMyFavorite.tvTitle.text = getString(R.string.home_text_3)
-            incMyFood.tvTitle.text = getString(R.string.home_text_4)
-            incAppInfo.tvTitle.text = getString(R.string.home_text_5)
+            with(mBinding) {
 
-            // 닉네임
-            tvNickName.text = PreferencesUtil.getPreferencesString("nickName")
+                incMyFavorite.tvTitle.text = getString(R.string.home_text_3)
+                incMyFood.tvTitle.text = getString(R.string.home_text_4)
+                incAppInfo.tvTitle.text = getString(R.string.home_text_5)
 
-            // 프로필 이미지
-            if (PreferencesUtil.getPreferencesString("profileImage").isNotEmpty()) {
+                // 닉네임
+                tvNickName.text = PreferencesUtil.getPreferencesString("nickName")
 
-                ivNoProfile.visibility = View.GONE
-                Glide.with(requireContext()).load(PreferencesUtil.getPreferencesString("profileImage")).into(ivProfile)
+                // 프로필 이미지
+                if (PreferencesUtil.getPreferencesString("profileImage").isNotEmpty()) {
+
+                    ivNoProfile.visibility = View.GONE
+                    Glide.with(ctx).load(PreferencesUtil.getPreferencesString("profileImage")).into(ivProfile)
+                }
             }
         }
     }
@@ -64,52 +67,66 @@ class FrgMyPage : BaseFragment<FrgMyPageBinding>() {
      */
     private fun setClickListener() {
 
-        with(mBinding) {
+        context?.let { ctx ->
 
-            // 프로필 수정
-            clProfileEdit.setOnClickListener {
+            with(mBinding) {
 
-                sheetProfileEdit?.dismiss()
-                sheetProfileEdit = SheetProfileEdit {
-                    tvNickName.text = PreferencesUtil.getPreferencesString("nickName")
-                    Glide.with(requireContext()).load(PreferencesUtil.getPreferencesString("profileImage")).into(ivProfile)
+                // 프로필 수정
+                clProfileEdit.setOnClickListener {
+
+                    sheetProfileEdit?.dismiss()
+                    sheetProfileEdit = SheetProfileEdit {
+                        tvNickName.text = PreferencesUtil.getPreferencesString("nickName")
+                        Glide.with(ctx).load(PreferencesUtil.getPreferencesString("profileImage")).into(ivProfile)
+                    }
+                    sheetProfileEdit?.show(parentFragmentManager, "")
                 }
-                sheetProfileEdit?.show(parentFragmentManager, "")
-            }
 
-            // 내 찜 목록
-            incMyFavorite.clItem.setOnClickListener {
+                // 내 찜 목록
+                incMyFavorite.clItem.setOnClickListener {
 
-                Intent(context, ActMyLikeFoodList::class.java).apply {
+                    Intent(context, ActMyLikeFoodList::class.java).apply {
 
-                    flags = Intent.FLAG_ACTIVITY_CLEAR_TOP
-                    startActivity(this)
+                        flags = Intent.FLAG_ACTIVITY_CLEAR_TOP
+                        startActivity(this)
+                    }
                 }
-            }
 
-            // 내가 찍은 음식
-            incMyFood.clItem.setOnClickListener {
+                // 내가 찍은 음식
+                incMyFood.clItem.setOnClickListener {
 
-                Intent(context, ActTakePictureFood::class.java).apply {
+                    Intent(context, ActTakePictureFood::class.java).apply {
 
-                    flags = Intent.FLAG_ACTIVITY_CLEAR_TOP
-                    startActivity(this)
+                        flags = Intent.FLAG_ACTIVITY_CLEAR_TOP
+                        startActivity(this)
+                    }
                 }
-            }
 
-            // 내정보 초기화
-            tvReset.setOnClickListener {
+                // 앱 정보
+                incAppInfo.clItem.setOnClickListener {
 
-                openPopup(getString(R.string.popup_text_1), getString(R.string.popup_text_4), getString(R.string.popup_text_2), {}, getString(R.string.confirm),
-                    {
-                        PreferencesUtil.deletePreferences("nickName")
-                        PreferencesUtil.deletePreferences("favoriteFood")
-                        PreferencesUtil.deletePreferences("profileImage")
-                        PreferencesUtil.deletePreferencesStringSet("myLikeFood")
-                        moveToNickName()
-                    },
-                    false
-                )
+                    Intent(context, ActAppInfo::class.java).apply {
+
+                        flags = Intent.FLAG_ACTIVITY_CLEAR_TOP
+                        startActivity(this)
+                    }
+                }
+
+                // 내정보 초기화
+                tvReset.setOnClickListener {
+
+                    openPopup(getString(R.string.popup_text_1), getString(R.string.popup_text_4), getString(R.string.popup_text_2), {}, getString(R.string.confirm),
+                        {
+                            PreferencesUtil.deletePreferences("nickName")
+                            PreferencesUtil.deletePreferences("favoriteFood")
+                            PreferencesUtil.deletePreferences("profileImage")
+                            PreferencesUtil.deletePreferencesStringSet("myLikeFood")
+                            PreferencesUtil.deletePreferencesStringSet("saveFoodPhotos")
+                            moveToNickName()
+                        },
+                        false
+                    )
+                }
             }
         }
     }

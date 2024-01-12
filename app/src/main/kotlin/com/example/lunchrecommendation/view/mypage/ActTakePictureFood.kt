@@ -19,8 +19,8 @@ import com.example.lunchrecommendation.component.GridLayoutItemDecoration
 import com.example.lunchrecommendation.data.dao.MenuDao
 import com.example.lunchrecommendation.databinding.ActTakePictureFoodBinding
 import com.example.lunchrecommendation.util.CommonUtils
+import com.example.lunchrecommendation.util.PreferencesUtil
 import com.example.lunchrecommendation.view.adapter.TakePictureFoodListAdapter
-import com.example.lunchrecommendation.view.dialog.SheetCameraGallery
 import java.io.File
 import java.text.SimpleDateFormat
 import java.util.Date
@@ -31,8 +31,10 @@ import java.util.Locale
  */
 class ActTakePictureFood : BaseContractActivity<ActTakePictureFoodBinding>() {
 
+    // 찍었던 사진 보여주기
+    private val savedFoodPhotos = PreferencesUtil.getPreferencesStringSet("saveFoodPhotos")
+
     private lateinit var currentPhotoPath: String
-    private var imageUri: Uri? = null
 
     companion object {
         private const val CAMERA_PERMISSION_REQUEST_CODE = 1001
@@ -50,6 +52,11 @@ class ActTakePictureFood : BaseContractActivity<ActTakePictureFoodBinding>() {
         slideAnimation = true
         fullScreen = false
         bgStatusBar = R.color.color_f5f5f5
+
+        // 찍었던 사진 보여주기
+        for (foodPhotos in savedFoodPhotos) {
+            mData.add(MenuDao(menuImage = foodPhotos))
+        }
     }
 
     override fun initView() {
@@ -96,6 +103,7 @@ class ActTakePictureFood : BaseContractActivity<ActTakePictureFoodBinding>() {
 
             // 앨범에서 선택
             tvAlbum.setOnClickListener {
+
                 val galleryPermission = if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.TIRAMISU) {
                     Manifest.permission.READ_MEDIA_IMAGES
                 } else {
@@ -171,12 +179,12 @@ class ActTakePictureFood : BaseContractActivity<ActTakePictureFoodBinding>() {
     }
 
     // 사진 촬영
-    private val takePicture: ActivityResultLauncher<Uri> = registerForActivityResult(ActivityResultContracts.TakePicture()) { success ->
-
-        if (success) {
-
+    private val takePicture: ActivityResultLauncher<Uri> =
+        registerForActivityResult(ActivityResultContracts.TakePicture()) { success ->
+            if (success) {
+                mAdapter.addPhoto(Uri.fromFile(File(currentPhotoPath)))
+            }
         }
-    }
 
     // 갤러리 열기
     private fun openGallery() {
@@ -188,13 +196,13 @@ class ActTakePictureFood : BaseContractActivity<ActTakePictureFoodBinding>() {
     }
 
     // 이미지 선택 런처
-    private val pickImageLauncher: ActivityResultLauncher<Intent> = registerForActivityResult(
-        ActivityResultContracts.StartActivityForResult()) { result ->
-        if (result.resultCode == RESULT_OK) {
-            val data: Intent? = result.data
-            data!!.data.let {
-                imageUri = it
+    private val pickImageLauncher: ActivityResultLauncher<Intent> =
+        registerForActivityResult(ActivityResultContracts.StartActivityForResult()) { result ->
+            if (result.resultCode == RESULT_OK) {
+                val data: Intent? = result.data
+                data!!.data?.let {
+                    mAdapter.addPhoto(it)
+                }
             }
         }
-    }
 }

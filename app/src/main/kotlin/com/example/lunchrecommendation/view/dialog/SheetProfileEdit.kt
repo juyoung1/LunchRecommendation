@@ -60,16 +60,18 @@ class SheetProfileEdit(val function: () -> Unit) : BaseBottomSheetFragment<Sheet
      */
     private fun initDisplay() {
 
-        with(mBinding) {
+        context?.let { ctx ->
 
-            etFavoriteFood.hint = getString(R.string.sheet_text_9, PreferencesUtil.getPreferencesString("nickName"))
+            with(mBinding) {
 
-            // 프로필 이미지
-            if (PreferencesUtil.getPreferencesString("profileImage").isNotEmpty()) {
+                etFavoriteFood.hint = getString(R.string.sheet_text_9, PreferencesUtil.getPreferencesString("nickName"))
 
-                ivNoProfile.visibility = View.GONE
-                Glide.with(requireContext()).load(PreferencesUtil.getPreferencesString("profileImage")).into(ivProfile)
+                // 프로필 이미지
+                if (PreferencesUtil.getPreferencesString("profileImage").isNotEmpty()) {
 
+                    ivNoProfile.visibility = View.GONE
+                    Glide.with(ctx).load(PreferencesUtil.getPreferencesString("profileImage")).into(ivProfile)
+                }
             }
         }
     }
@@ -98,15 +100,15 @@ class SheetProfileEdit(val function: () -> Unit) : BaseBottomSheetFragment<Sheet
 
                 } else {
 
+                    if (profileImage.isNotEmpty()) { PreferencesUtil.setPreferencesString("profileImage", profileImage) }
                     PreferencesUtil.setPreferencesString("nickName", nickName)
                     PreferencesUtil.setPreferencesString("favoriteFood", favoriteFood)
-                    PreferencesUtil.setPreferencesString("profileImage", profileImage)
                     function()
                     dismiss()
                 }
             }
 
-            // 프로필
+            /** 프로필 이미지 */
             cvProfile.setOnClickListener {
 
                 val sheetCameraGallery = SheetCameraGallery { imagePath ->

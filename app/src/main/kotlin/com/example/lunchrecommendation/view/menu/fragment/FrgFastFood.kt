@@ -53,7 +53,6 @@ class FrgFastFood : BaseFragment<FrgMenuListBinding>() {
                     layoutManager = GridLayoutManager(ctx, spanCount)
                     adapter = mAdapter
                     addItemDecoration(GridLayoutItemDecoration(context, itemGap, itemGap, spanCount))
-                    isNestedScrollingEnabled = true
                     mAdapter.selectItem = object : MenuListAdapter.SelectItem {
 
                         override fun selectItem(position: Int) {

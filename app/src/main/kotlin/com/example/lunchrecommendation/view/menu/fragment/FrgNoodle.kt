@@ -9,6 +9,7 @@ import com.example.lunchrecommendation.component.GridLayoutItemDecoration
 import com.example.lunchrecommendation.data.dao.MenuDao
 import com.example.lunchrecommendation.databinding.FrgMenuListBinding
 import com.example.lunchrecommendation.view.adapter.MenuListAdapter
+import com.example.lunchrecommendation.view.util.MenuListUtil
 import dagger.hilt.android.AndroidEntryPoint
 
 /**
@@ -26,6 +27,9 @@ class FrgNoodle : BaseFragment<FrgMenuListBinding>() {
     override fun getViewBinding(inflater: LayoutInflater, container: ViewGroup?) = FrgMenuListBinding.inflate(inflater, container, false)
 
     override fun initData() {
+
+        mData.clear()
+        mData.addAll(MenuListUtil.noodle())
     }
 
     override fun initView() { initRecyclerView() }
@@ -49,7 +53,6 @@ class FrgNoodle : BaseFragment<FrgMenuListBinding>() {
                     layoutManager = GridLayoutManager(ctx, spanCount)
                     adapter = mAdapter
                     addItemDecoration(GridLayoutItemDecoration(context, itemGap, itemGap, spanCount))
-                    isNestedScrollingEnabled = true
                     mAdapter.selectItem = object : MenuListAdapter.SelectItem {
 
                         override fun selectItem(position: Int) {
