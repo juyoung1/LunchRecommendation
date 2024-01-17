@@ -3,13 +3,17 @@ package com.example.lunchrecommendation.view.menu.fragment
 import android.os.Bundle
 import android.view.LayoutInflater
 import android.view.ViewGroup
+import android.widget.Toast
 import androidx.recyclerview.widget.GridLayoutManager
+import com.example.lunchrecommendation.R
 import com.example.lunchrecommendation.base.BaseFragment
 import com.example.lunchrecommendation.component.GridLayoutItemDecoration
 import com.example.lunchrecommendation.data.dao.MenuDao
 import com.example.lunchrecommendation.databinding.FrgMenuListBinding
 import com.example.lunchrecommendation.util.PreferencesUtil
+import com.example.lunchrecommendation.util.ToastUtil
 import com.example.lunchrecommendation.view.adapter.MenuListAdapter
+import com.example.lunchrecommendation.view.home.activity.ActHome
 import com.example.lunchrecommendation.view.util.MenuListUtil
 
 /**
@@ -72,9 +76,19 @@ class FrgKoreaFood : BaseFragment<FrgMenuListBinding>() {
                                 // 찜 하기
                                 selectItem.isSelected = !selectItem.isSelected
 
-                                // 찜한 이미지 PreferenceUtil 에 저장
-                                val myLikeFood = mData.filter { it.isSelected }.map { it.menuImage.toString() }.toSet()
-                                PreferencesUtil.setPreferencesStringSet("myLikeFood", myLikeFood)
+                                // 찜 선택 토스트
+                                (activity as ActHome).showToast(selectItem.isSelected)
+
+                                // 찜한 이미지 PreferenceUtil 에 저장, 다른 프래그먼트에서 찜한 이미지에 추가하여 저장
+                                val existingLikedFood = PreferencesUtil.getPreferencesStringSet("myLikeFood").toMutableSet()
+
+                                if (selectItem.isSelected) {
+                                    existingLikedFood.add(selectItem.menuImage.toString())
+                                } else {
+                                    existingLikedFood.remove(selectItem.menuImage.toString())
+                                }
+
+                                PreferencesUtil.setPreferencesStringSet("myLikeFood", existingLikedFood)
 
                                 mAdapter.notifyDataSetChanged()
                             }

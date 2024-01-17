@@ -27,6 +27,8 @@
     <string name="home_text_12">이메일:</string>
     <string name="home_text_13">버전 정보</string>
     <string name="home_text_14"><u>lkckss1234@gmail.com</u></string>
+    <string name="home_text_15">마이 페이지 - 내 찜 목록에 저장되었습니다</string>
+    <string name="home_text_16">내 찜 목록에서 삭제되었습니다</string>
 
     <string name="sheet_text_1">프로필을 설정해보세요</string>
     <string name="sheet_text_2">프로필 사진 설정</string>

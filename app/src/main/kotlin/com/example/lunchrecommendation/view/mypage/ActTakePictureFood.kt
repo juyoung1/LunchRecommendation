@@ -161,7 +161,10 @@ class ActTakePictureFood : BaseContractActivity<ActTakePictureFoodBinding>() {
     }
 
     // 찍은 사진 없을 시 문구 노출
-    fun noPhotoVisibility() { mBinding.tvNoFoodPhoto.visibility = if (mData.isEmpty()) View.VISIBLE else View.GONE }
+    fun noPhotoVisibility() {
+
+        mBinding.tvNoFoodPhoto.visibility = if (mData.isEmpty()) View.VISIBLE else View.GONE
+    }
 
     // 카메라 실행
     private fun openCamera() {
@@ -188,8 +191,7 @@ class ActTakePictureFood : BaseContractActivity<ActTakePictureFoodBinding>() {
     }
 
     // 사진 촬영
-    private val takePicture: ActivityResultLauncher<Uri> =
-        registerForActivityResult(ActivityResultContracts.TakePicture()) { success ->
+    private val takePicture: ActivityResultLauncher<Uri> = registerForActivityResult(ActivityResultContracts.TakePicture()) { success ->
             if (success) {
                 mAdapter.addPhoto(Uri.fromFile(File(currentPhotoPath)))
             }
@@ -205,8 +207,7 @@ class ActTakePictureFood : BaseContractActivity<ActTakePictureFoodBinding>() {
     }
 
     // 이미지 선택 런처
-    private val pickImageLauncher: ActivityResultLauncher<Intent> =
-        registerForActivityResult(ActivityResultContracts.StartActivityForResult()) { result ->
+    private val pickImageLauncher: ActivityResultLauncher<Intent> = registerForActivityResult(ActivityResultContracts.StartActivityForResult()) { result ->
             if (result.resultCode == RESULT_OK) {
                 val data: Intent? = result.data
                 data!!.data?.let {

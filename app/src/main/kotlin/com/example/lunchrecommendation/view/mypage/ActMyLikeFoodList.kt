@@ -101,9 +101,6 @@ class ActMyLikeFoodList : BaseContractActivity<ActMyLikeFoodListBinding>() {
 
                         if (mData.size > position) {
 
-                            mData.removeAt(position)
-                            mAdapter.notifyItemRemoved(position)
-                            mAdapter.notifyDataSetChanged()
                         }
                     }
                 }

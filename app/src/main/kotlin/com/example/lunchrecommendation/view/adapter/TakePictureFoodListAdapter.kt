@@ -68,6 +68,7 @@ class TakePictureFoodListAdapter(val context: Context?, private val list: ArrayL
 
         // 찍은 사진 저장
         saveFoodPhotos()
+
         // 찍은 사진 없을 시 문구 노춡
         (context as? ActTakePictureFood)?.noPhotoVisibility()
 
@@ -81,6 +82,7 @@ class TakePictureFoodListAdapter(val context: Context?, private val list: ArrayL
             list.removeAt(position)
             notifyItemRemoved(position)
             notifyItemRangeChanged(position, itemCount)
+
             saveFoodPhotos()
 
             // 찍은 사진 없을 시 문구 노춡
@@ -88,7 +90,7 @@ class TakePictureFoodListAdapter(val context: Context?, private val list: ArrayL
         }
     }
 
-    // 찍은 사진 저장
+    // 찍거나 삭제한 상태 저장
     private fun saveFoodPhotos() {
 
         val saveFoodPhotos = list.map { it.menuImage.toString() }.toSet()

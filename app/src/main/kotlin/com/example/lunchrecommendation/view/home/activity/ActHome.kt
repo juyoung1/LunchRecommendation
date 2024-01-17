@@ -10,6 +10,7 @@ import com.example.lunchrecommendation.databinding.ActHomeBinding
 import com.example.lunchrecommendation.util.CommonUtils
 import com.example.lunchrecommendation.constants.Enum
 import com.example.lunchrecommendation.util.PreferencesUtil
+import com.example.lunchrecommendation.util.ToastUtil
 import com.example.lunchrecommendation.view.home.fragment.FrgMenu
 import com.example.lunchrecommendation.view.home.fragment.FrgMyPage
 
@@ -126,6 +127,21 @@ class ActHome : BaseContractActivity<ActHomeBinding>() {
                 Enum.Page.Menu -> { getString(R.string.home_text_1, PreferencesUtil.getPreferencesString("nickName")) }
                 Enum.Page.MyPage -> { getString(R.string.myPage) }
             }
+        }
+    }
+
+    /**
+     * 프래그먼트 찜 선택 여부 토스트
+     */
+    fun showToast(isSelected: Boolean) {
+
+        if (isSelected) {
+
+            ToastUtil.showSelected(this@ActHome, getString(R.string.home_text_15))
+
+        } else {
+
+            ToastUtil.showUnSelected(this@ActHome, getString(R.string.home_text_16))
         }
     }
 }

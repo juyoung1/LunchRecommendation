@@ -10,6 +10,7 @@ import com.example.lunchrecommendation.data.dao.MenuDao
 import com.example.lunchrecommendation.databinding.FrgMenuListBinding
 import com.example.lunchrecommendation.util.PreferencesUtil
 import com.example.lunchrecommendation.view.adapter.MenuListAdapter
+import com.example.lunchrecommendation.view.home.activity.ActHome
 import com.example.lunchrecommendation.view.util.MenuListUtil
 
 /**
@@ -70,9 +71,19 @@ class FrgJapanFood : BaseFragment<FrgMenuListBinding>() {
                                 // 찜 하기
                                 selectItem.isSelected = !selectItem.isSelected
 
-                                // 찜한 이미지 PreferenceUtil 에 저장
-                                val myLikeFood = mData.filter { it.isSelected }.map { it.menuImage.toString() }.toSet()
-                                PreferencesUtil.setPreferencesStringSet("myLikeFood", myLikeFood)
+                                // 찜 선택 토스트
+                                (activity as ActHome).showToast(selectItem.isSelected)
+
+                                // 찜한 이미지 PreferenceUtil 에 저장, 다른 프래그먼트에서 찜한 이미지에 추가하여 저장
+                                val existingLikedFood = PreferencesUtil.getPreferencesStringSet("myLikeFood").toMutableSet()
+
+                                if (selectItem.isSelected) {
+                                    existingLikedFood.add(selectItem.menuImage.toString())
+                                } else {
+                                    existingLikedFood.remove(selectItem.menuImage.toString())
+                                }
+
+                                PreferencesUtil.setPreferencesStringSet("myLikeFood", existingLikedFood)
 
                                 mAdapter.notifyDataSetChanged()
                             }

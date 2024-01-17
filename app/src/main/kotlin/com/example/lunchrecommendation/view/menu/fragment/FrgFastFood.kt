@@ -8,14 +8,15 @@ import com.example.lunchrecommendation.base.BaseFragment
 import com.example.lunchrecommendation.component.GridLayoutItemDecoration
 import com.example.lunchrecommendation.data.dao.MenuDao
 import com.example.lunchrecommendation.databinding.FrgMenuListBinding
+import com.example.lunchrecommendation.util.PreferencesUtil
 import com.example.lunchrecommendation.view.adapter.MenuListAdapter
+import com.example.lunchrecommendation.view.home.activity.ActHome
 import com.example.lunchrecommendation.view.util.MenuListUtil
 import dagger.hilt.android.AndroidEntryPoint
 
 /**
  * 메뉴 탭 - 패스트 푸드
  */
-@AndroidEntryPoint
 class FrgFastFood : BaseFragment<FrgMenuListBinding>() {
 
     // 메뉴 리스트 어댑터
@@ -24,12 +25,19 @@ class FrgFastFood : BaseFragment<FrgMenuListBinding>() {
     // 메뉴 리스트 데이터
     private val mData: ArrayList<MenuDao> = ArrayList()
 
+    // 내가 찜했던 메뉴
+    private val myLikedFood = PreferencesUtil.getPreferencesStringSet("myLikeFood")
+
     override fun getViewBinding(inflater: LayoutInflater, container: ViewGroup?) = FrgMenuListBinding.inflate(inflater, container, false)
 
     override fun initData() {
 
         mData.clear()
         mData.addAll(MenuListUtil.fastFood())
+
+        for (item in mData) {
+            item.isSelected = myLikedFood.contains(item.menuImage.toString())
+        }
     }
 
     override fun initView() { initRecyclerView() }
@@ -59,6 +67,26 @@ class FrgFastFood : BaseFragment<FrgMenuListBinding>() {
 
                             if (mData.size > position) {
 
+                                val selectItem = mData[position]
+
+                                // 찜 하기
+                                selectItem.isSelected = !selectItem.isSelected
+
+                                // 찜 선택 토스트
+                                (activity as ActHome).showToast(selectItem.isSelected)
+
+                                // 찜한 이미지 PreferenceUtil 에 저장, 다른 프래그먼트에서 찜한 이미지에 추가하여 저장
+                                val existingLikedFood = PreferencesUtil.getPreferencesStringSet("myLikeFood").toMutableSet()
+
+                                if (selectItem.isSelected) {
+                                    existingLikedFood.add(selectItem.menuImage.toString())
+                                } else {
+                                    existingLikedFood.remove(selectItem.menuImage.toString())
+                                }
+
+                                PreferencesUtil.setPreferencesStringSet("myLikeFood", existingLikedFood)
+
+                                mAdapter.notifyDataSetChanged()
                             }
                         }
                     }

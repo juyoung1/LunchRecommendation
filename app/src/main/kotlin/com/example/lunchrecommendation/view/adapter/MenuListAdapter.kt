@@ -6,10 +6,8 @@ import android.view.View
 import android.view.ViewGroup
 import androidx.recyclerview.widget.RecyclerView
 import com.bumptech.glide.Glide
-import com.example.lunchrecommendation.R
 import com.example.lunchrecommendation.data.dao.MenuDao
 import com.example.lunchrecommendation.databinding.ItemMenuListBinding
-import com.example.lunchrecommendation.databinding.ItemTabMenuListBinding
 
 /**
  * 메뉴 - 메뉴 리스트 어댑터
