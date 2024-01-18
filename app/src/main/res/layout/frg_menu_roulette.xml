@@ -1,0 +1,85 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent">
+
+    <!-- 룰렛 -->
+    <com.example.lunchrecommendation.view.custom.Roulette
+        android:id="@+id/roulette"
+        android:layout_width="wrap_content"
+        android:layout_height="0dp"
+        app:layout_constraintBottom_toTopOf="@id/llRoulette"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent" />
+
+    <!-- 룰렛 결과 화살표 -->
+    <androidx.appcompat.widget.AppCompatImageView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginBottom="10dp"
+        android:rotation="180"
+        android:src="@drawable/ic_roulette_direction"
+        app:layout_constraintBottom_toBottomOf="@id/roulette"
+        app:layout_constraintEnd_toEndOf="@id/roulette"
+        app:layout_constraintStart_toStartOf="@id/roulette"
+        app:layout_constraintTop_toTopOf="@id/roulette" />
+
+    <!-- 룰렛 결과 텍스트 노출 -->
+    <androidx.appcompat.widget.AppCompatTextView
+        android:id="@+id/tvTodayMenu"
+        style="@style/robotoRegular.21"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="25dp"
+        android:gravity="center"
+        android:text="@string/home_text_20"
+        android:textColor="@color/black"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="@id/roulette" />
+
+    <!-- 메뉴 새로고침 -->
+    <androidx.appcompat.widget.AppCompatTextView
+        android:id="@+id/tvReset"
+        style="@style/robotoRegular.13"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginBottom="60dp"
+        android:paddingStart="20dp"
+        android:paddingTop="15dp"
+        android:paddingEnd="20dp"
+        android:paddingBottom="15dp"
+        android:text="@string/home_text_19"
+        android:textColor="@color/color_999999"
+        app:layout_constraintBottom_toBottomOf="@id/roulette"
+        app:layout_constraintEnd_toEndOf="@id/roulette" />
+
+    <!-- 룰렛 돌리기 버튼 -->
+    <androidx.appcompat.widget.LinearLayoutCompat
+        android:id="@+id/llRoulette"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="12dp"
+        android:orientation="vertical"
+        android:padding="16dp"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent">
+
+        <androidx.appcompat.widget.AppCompatTextView
+            android:id="@+id/btnRoulette"
+            style="@style/samsungOneKorean600.16"
+            android:layout_width="wrap_content"
+            android:layout_height="50dp"
+            android:background="@drawable/bg_radius_43_0080ff"
+            android:gravity="center_vertical"
+            android:paddingStart="16dp"
+            android:paddingEnd="16dp"
+            android:text="@string/home_text_17"
+            android:textColor="@color/white" />
+
+    </androidx.appcompat.widget.LinearLayoutCompat>
+
+</androidx.constraintlayout.widget.ConstraintLayout>

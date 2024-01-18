@@ -172,4 +172,18 @@ object MenuListUtil {
             }
         }
     }
+
+    // 모든 메뉴 불러오기
+    fun getAllMenus(): List<MenuDao> {
+
+        val koreaFoodMenus = koreaFood()
+        val noodleMenus = noodle()
+        val japanFoodMenus = japanFood()
+        val chinaFoodMenus = chinaFood()
+        val westFoodMenus = westFood()
+        val snackBarMenus = snackBar()
+        val fastFoodMenus = fastFood()
+
+        return koreaFoodMenus + noodleMenus + japanFoodMenus + chinaFoodMenus + westFoodMenus + snackBarMenus + fastFoodMenus
+    }
 }

@@ -12,6 +12,7 @@ import com.example.lunchrecommendation.constants.Enum
 import com.example.lunchrecommendation.util.PreferencesUtil
 import com.example.lunchrecommendation.util.ToastUtil
 import com.example.lunchrecommendation.view.home.fragment.FrgMenu
+import com.example.lunchrecommendation.view.home.fragment.FrgMenuRoulette
 import com.example.lunchrecommendation.view.home.fragment.FrgMyPage
 
 /**
@@ -54,6 +55,13 @@ class ActHome : BaseContractActivity<ActHomeBinding>() {
                 ivNavi.setImageResource(R.drawable.ic_menu)
             }
 
+            // 룰렛
+            incNaviRoulette.apply {
+
+                tvNavi.text = getString(R.string.roulette)
+                ivNavi.setImageResource(R.drawable.ic_roulette)
+            }
+
             // 마이 페이지
             incNaviMyPage.apply {
 
@@ -73,6 +81,19 @@ class ActHome : BaseContractActivity<ActHomeBinding>() {
             /** 메뉴 탭 */
             incNaviMenu.btnNavi.setOnClickListener { changeMainFragment(Enum.Page.Menu) }
 
+            /** 룰렛 탭 */
+            incNaviRoulette.btnNavi.setOnClickListener {
+
+                if (!it.isSelected) {
+
+                    changeMainFragment(Enum.Page.Roulette)
+
+                } else {
+
+                    return@setOnClickListener
+                }
+            }
+
             /** 마이 페이지 탭 */
             incNaviMyPage.btnNavi.setOnClickListener { changeMainFragment(Enum.Page.MyPage) }
         }
@@ -86,6 +107,7 @@ class ActHome : BaseContractActivity<ActHomeBinding>() {
         val fragment = when( page ) {
 
             Enum.Page.Menu -> { FrgMenu.newInstance() }
+            Enum.Page.Roulette -> { FrgMenuRoulette.newInstance() }
             Enum.Page.MyPage -> { FrgMyPage.newInstance() }
         }
 
@@ -97,9 +119,11 @@ class ActHome : BaseContractActivity<ActHomeBinding>() {
 
         // Bottom navigation button 변경
         mBinding.incNaviMenu.btnNavi.isSelected = page == Enum.Page.Menu
+        mBinding.incNaviRoulette.btnNavi.isSelected = page == Enum.Page.Roulette
         mBinding.incNaviMyPage.btnNavi.isSelected = page == Enum.Page.MyPage
 
         selectedTextStyle(mBinding.incNaviMenu.btnNavi.isSelected, mBinding.incNaviMenu.tvNavi)
+        selectedTextStyle(mBinding.incNaviRoulette.btnNavi.isSelected, mBinding.incNaviRoulette.tvNavi)
         selectedTextStyle(mBinding.incNaviMyPage.btnNavi.isSelected, mBinding.incNaviMyPage.tvNavi)
     }
 
@@ -107,6 +131,7 @@ class ActHome : BaseContractActivity<ActHomeBinding>() {
      * 네비 아이템 선택 시 텍스트 스타일 변경
      */
     private fun selectedTextStyle(selected: Boolean, textView: TextView) {
+
         val fontStyle = if (selected) R.font.samsung_sharpsans_bold else R.font.samsung_one_korean_500
         val textSize = if (selected) 14f else 12f
 
@@ -125,6 +150,7 @@ class ActHome : BaseContractActivity<ActHomeBinding>() {
             incHeader.tvTitle.text = when( page ) {
 
                 Enum.Page.Menu -> { getString(R.string.home_text_1, PreferencesUtil.getPreferencesString("nickName")) }
+                Enum.Page.Roulette -> { getString(R.string.roulette) }
                 Enum.Page.MyPage -> { getString(R.string.myPage) }
             }
         }

@@ -4,6 +4,6 @@ class Enum {
 
     enum class Page {
 
-        Menu, MyPage
+        Menu, MyPage, Roulette
     }
 }

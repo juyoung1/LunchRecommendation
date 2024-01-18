@@ -32,6 +32,14 @@
             android:layout_height="match_parent"
             android:layout_weight="1" />
 
+        <!-- 룰렛 -->
+        <include
+            android:id="@+id/incNaviRoulette"
+            layout="@layout/inc_navi_button"
+            android:layout_width="0dp"
+            android:layout_height="match_parent"
+            android:layout_weight="1" />
+
         <!-- 마이 페이지 -->
         <include
             android:id="@+id/incNaviMyPage"
