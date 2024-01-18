@@ -2,8 +2,12 @@ package com.example.lunchrecommendation.view.home.fragment
 
 import android.animation.ValueAnimator
 import android.os.Bundle
+import android.text.Spannable
+import android.text.SpannableString
+import android.text.Spanned
+import android.text.style.AbsoluteSizeSpan
+import android.text.style.StyleSpan
 import android.view.LayoutInflater
-import android.view.View
 import android.view.ViewGroup
 import android.view.animation.LinearInterpolator
 import com.example.lunchrecommendation.R
@@ -86,20 +90,25 @@ class FrgMenuRoulette : BaseFragment<FrgMenuRouletteBinding>() {
 
             val rouletteListener = object : RotateListener {
 
-                // 룰렛 회전 시작
+                /** 룰렛 회전 시작 */
                 override fun onRotateStart() {
 
                     startDotAnimation()
                     btnRoulette.isEnabled = false
                 }
 
-                // 룰렛 회전 종료
+                /** 룰렛 회전 종료 */
                 override fun onRotateEnd(result: String) {
 
                     stopDotAnimation()
                     btnRoulette.isEnabled = true
-                    tvTodayMenu.visibility = View.VISIBLE
-                    tvTodayMenu.text = getString(R.string.home_text_18, result)
+
+                    // 결과 텍스트 설정 및 폰트, 사이즈 적용
+                    val resultText = getString(R.string.home_text_18, result)
+                    val spannableString = SpannableString(resultText)
+                    spannableString.setSpan(AbsoluteSizeSpan(24, true), resultText.indexOf(result), resultText.indexOf(result) + result.length, Spannable.SPAN_EXCLUSIVE_EXCLUSIVE)
+                    spannableString.setSpan(StyleSpan(R.font.samsung_sharpsans_bold), resultText.indexOf(result), resultText.indexOf(result) + result.length, Spanned.SPAN_EXCLUSIVE_EXCLUSIVE)
+                    tvTodayMenu.text = spannableString
                 }
             }
 
