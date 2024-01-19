@@ -9,8 +9,8 @@ object MenuListUtil {
      */
     fun koreaFood(): List<MenuDao> {
         val menuTitles = listOf(
-            "된장찌개", "김치찌개", "간장게장", "비빔밥", "감자탕", "국밥", "삼겹살", "돼지갈비", "김치찜", "불고기", "갈비탕", "닭갈비", "닭볶음탕", "부대찌개", "소고기", "족발", "보쌈", "오리 고기", "김치 볶음밥",
-            "곱창", "오징어 볶음", "제육 볶음", "추어탕", "해물탕"
+            "된장찌개", "김치찌개", "간장게장", "비빔밥", "감자탕", "국밥", "삼겹살", "삼계탕", "돼지갈비", "김치찜", "불고기", "갈비탕", "닭갈비", "닭볶음탕", "부대찌개", "소고기", "족발", "보쌈", "오리 고기", "김치 볶음밥",
+            "곱창", "오징어 덮밥", "추어탕", "해물탕", "갈비찜"
         )
 
         val menuImages = listOf(
@@ -21,6 +21,7 @@ object MenuListUtil {
             "https://cdn.pixabay.com/photo/2015/07/08/19/40/food-836806_1280.jpg",
             "https://cdn.pixabay.com/photo/2016/04/14/17/01/soup-1329266_1280.jpg",
             "https://cdn.pixabay.com/photo/2015/10/30/14/03/pork-1014180_1280.jpg",
+            "https://cdn.pixabay.com/photo/2020/05/21/08/07/samgyetang-5199668_1280.jpg",
             "https://cdn.pixabay.com/photo/2019/11/21/18/28/garlic-ribs-4643142_1280.jpg",
             "https://cdn.pixabay.com/photo/2020/02/17/04/23/cooking-4855383_1280.jpg",
             "https://cdn.pixabay.com/photo/2017/07/19/03/13/pot-2517765_1280.jpg",
@@ -35,9 +36,9 @@ object MenuListUtil {
             "https://cdn.pixabay.com/photo/2014/01/09/10/14/kimchi-fried-rice-241051_1280.jpg",
             "https://cdn.pixabay.com/photo/2015/04/22/06/57/gopchang-734303_1280.jpg",
             "https://cdn.pixabay.com/photo/2018/12/10/00/27/squid-stir-fry-3866066_1280.jpg",
-            "https://cdn.pixabay.com/photo/2018/12/10/00/28/squid-stir-fry-3866067_1280.jpg",
             "https://cdn.pixabay.com/photo/2014/06/30/17/27/chueotang-380562_1280.jpg",
-            "https://cdn.pixabay.com/photo/2020/01/16/02/07/clam-4769476_1280.jpg"
+            "https://cdn.pixabay.com/photo/2020/01/16/02/07/clam-4769476_1280.jpg",
+            "https://cdn.pixabay.com/photo/2015/03/24/07/06/galbijjim-687170_1280.jpg"
         )
 
         return createMenuList(menuTitles, menuImages)

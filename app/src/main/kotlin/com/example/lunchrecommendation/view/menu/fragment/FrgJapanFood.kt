@@ -31,9 +31,11 @@ class FrgJapanFood : BaseFragment<FrgMenuListBinding>() {
 
     override fun initData() {
 
+        // 메뉴 리스트 데이터
         mData.clear()
         mData.addAll(MenuListUtil.japanFood())
 
+        // 찜 했던 메뉴 찜 되어 있는 상태로 보여짐
         for (menu in mData) {
             menu.isSelected = myLikedFood.contains(menu.menuImage.toString())
         }

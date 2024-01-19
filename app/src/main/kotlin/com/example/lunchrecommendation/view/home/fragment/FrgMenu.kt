@@ -18,7 +18,6 @@ import com.example.lunchrecommendation.view.menu.fragment.FrgKoreaFood
 import com.example.lunchrecommendation.view.menu.fragment.FrgNoodle
 import com.example.lunchrecommendation.view.menu.fragment.FrgSnackBar
 import com.example.lunchrecommendation.view.menu.fragment.FrgWestFood
-import dagger.hilt.android.AndroidEntryPoint
 
 /**
  * 홈 - 메뉴
@@ -37,23 +36,8 @@ class FrgMenu : BaseFragment<FrgMenuBinding>() {
 
     override fun initData() {
 
-        for (menu in 0..6) {
-
-            val data = MenuDao()
-            val category = when(menu) {
-
-                0 -> {"한식"}
-                1 -> {"일식"}
-                2 -> {"양식"}
-                3 -> {"중식"}
-                4 -> {"분식"}
-                5 -> {"면"}
-                6 -> {"패스트 푸드"}
-                else -> {""}
-            }
-            data.menu = category
-            menuTabList.add(data)
-        }
+        // 상단 탭 더미 데이터
+        initDummyData()
     }
 
     override fun initView() {
@@ -84,7 +68,7 @@ class FrgMenu : BaseFragment<FrgMenuBinding>() {
                         override fun selectItem(position: Int) {
                             if (menuTabList.size > position) {
 
-                                mBinding.viewPager.currentItem = position
+                                viewPager.currentItem = position
 
                                 for (i in 0 until menuTabList.size) {
                                     menuTabList[i].isSelected = (i == position)
@@ -98,7 +82,7 @@ class FrgMenu : BaseFragment<FrgMenuBinding>() {
         }
     }
 
-    /**개
+    /**
      * ViewPager 초기화
      */
     private fun initViewPager() {
@@ -125,16 +109,47 @@ class FrgMenu : BaseFragment<FrgMenuBinding>() {
 
                 viewPagerAdapter = ViewPagerAdapter(act as BaseActivity<*>, fragments)
                 viewPager.adapter = viewPagerAdapter
-                viewPager.isUserInputEnabled = false
+                viewPager.isUserInputEnabled = true
                 viewPager.orientation = ViewPager2.ORIENTATION_HORIZONTAL
                 viewPager.registerOnPageChangeCallback(object : ViewPager2.OnPageChangeCallback() {
                     override fun onPageSelected(position: Int) {
                         super.onPageSelected(position)
 
+                        // 뷰 페이저 스와이프 시 상단 탭 변경
+                        for (i in menuTabList.indices) {
+                            menuTabList[i].isSelected = (i == position)
+                        }
+                        rvList.smoothScrollToPosition(position)
+                        mAdapter.notifyDataSetChanged()
+
                         fragments[position].reLoad()
                     }
                 })
             }
+        }
+    }
+
+    /**
+     * 상단 탭 더미 데이터
+     */
+    private fun initDummyData() {
+
+        for (menu in 0..6) {
+
+            val data = MenuDao()
+            val category = when(menu) {
+
+                0 -> {"한식"}
+                1 -> {"일식"}
+                2 -> {"양식"}
+                3 -> {"중식"}
+                4 -> {"분식"}
+                5 -> {"면"}
+                6 -> {"패스트 푸드"}
+                else -> {""}
+            }
+            data.menu = category
+            menuTabList.add(data)
         }
     }
 
