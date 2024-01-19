@@ -14,6 +14,7 @@ import com.example.lunchrecommendation.R
 import com.example.lunchrecommendation.base.BaseFragment
 import com.example.lunchrecommendation.databinding.FrgMenuRouletteBinding
 import com.example.lunchrecommendation.view.custom.RotateListener
+import com.example.lunchrecommendation.view.home.activity.ActHome
 import com.example.lunchrecommendation.view.util.MenuListUtil
 
 /**
@@ -95,6 +96,7 @@ class FrgMenuRoulette : BaseFragment<FrgMenuRouletteBinding>() {
                 /** 룰렛 회전 시작 */
                 override fun onRotateStart() {
 
+                    (activity as ActHome).rouletteNaviBlock(false)
                     startDotAnimation()
                     btnRoulette.isEnabled = false
                 }
@@ -102,6 +104,7 @@ class FrgMenuRoulette : BaseFragment<FrgMenuRouletteBinding>() {
                 /** 룰렛 회전 종료 */
                 override fun onRotateEnd(result: String) {
 
+                    (activity as ActHome).rouletteNaviBlock(true)
                     stopDotAnimation()
                     btnRoulette.isEnabled = true
 

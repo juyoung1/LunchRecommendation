@@ -49,7 +49,7 @@
     <string name="sheet_text_12">프로필 사진 선택</string>
     <string name="sheet_text_13">사진 촬영</string>
     <string name="sheet_text_14">앨범에서 선택</string>
-    <string name="sheet_text_15"></string>
+    <string name="sheet_text_15"><u>기본 이미지로 변경</u></string>
     <string name="sheet_text_16"></string>
 
     <string name="popup_text_1">내정보를 초기화 하시겠습니까?</string>

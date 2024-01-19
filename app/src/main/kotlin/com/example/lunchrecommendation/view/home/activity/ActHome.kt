@@ -170,4 +170,16 @@ class ActHome : BaseContractActivity<ActHomeBinding>() {
             ToastUtil.showUnSelected(this@ActHome, getString(R.string.home_text_16))
         }
     }
+
+    /**
+     * 룰렛 돌릴 때 홈 네비 버튼 클릭 블락
+     */
+    fun rouletteNaviBlock(clickEnabled: Boolean) {
+
+        with(mBinding) {
+
+            incNaviMenu.btnNavi.isClickable = clickEnabled
+            incNaviMyPage.btnNavi.isClickable = clickEnabled
+        }
+    }
 }

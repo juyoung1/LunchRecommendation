@@ -56,13 +56,14 @@
                         android:layout_height="match_parent"
                         android:scaleType="centerCrop" />
 
+                    <!-- 프로필 없을 때 기본 이미지 -->
                     <androidx.appcompat.widget.AppCompatImageView
                         android:id="@+id/ivNoProfile"
-                        android:layout_width="wrap_content"
-                        android:layout_height="25dp"
+                        android:layout_width="60dp"
+                        android:layout_height="60dp"
                         android:layout_gravity="center"
                         android:scaleType="centerCrop"
-                        android:src="@drawable/ic_no_image"
+                        android:src="@drawable/ic_no_profile_image"
                         app:layout_constraintBottom_toBottomOf="parent"
                         app:layout_constraintStart_toStartOf="parent"
                         app:layout_constraintTop_toTopOf="parent" />

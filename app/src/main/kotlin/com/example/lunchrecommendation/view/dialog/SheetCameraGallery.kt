@@ -21,6 +21,7 @@ import androidx.core.content.FileProvider
 import com.example.lunchrecommendation.R
 import com.example.lunchrecommendation.base.BaseBottomSheetFragment
 import com.example.lunchrecommendation.databinding.SheetCameraGalleryBinding
+import com.example.lunchrecommendation.util.PreferencesUtil
 import com.google.android.material.bottomsheet.BottomSheetBehavior
 import com.google.android.material.bottomsheet.BottomSheetDialog
 import java.io.File
@@ -109,6 +110,13 @@ class SheetCameraGallery(private val imageCapturedCallback: (String) -> Unit) : 
                         // 앨범 권한 요청
                         ActivityCompat.requestPermissions(requireActivity(), arrayOf(galleryPermission), GALLERY_PERMISSION_REQUEST_CODE)
                     }
+                }
+
+                /** 기본 이미지로 변경 */
+                tvBasicImage.setOnClickListener {
+
+                    imageCapturedCallback("")
+                    dismiss()
                 }
             }
         }

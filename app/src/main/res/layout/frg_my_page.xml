@@ -40,11 +40,11 @@
 
                 <androidx.appcompat.widget.AppCompatImageView
                     android:id="@+id/ivNoProfile"
-                    android:layout_width="15dp"
-                    android:layout_height="15dp"
+                    android:layout_width="40dp"
+                    android:layout_height="40dp"
                     android:layout_gravity="center"
                     android:scaleType="centerCrop"
-                    android:src="@drawable/ic_no_image" />
+                    android:src="@drawable/ic_no_profile_image" />
 
                 <androidx.appcompat.widget.AppCompatImageView
                     android:id="@+id/ivProfile"
