@@ -133,7 +133,7 @@ object MenuListUtil {
      * 면
      */
     fun noodle(): List<MenuDao> {
-        val menuTitles = listOf("라면", "짜장면", "우동", "라멘", "파스타", "볶음면", "짬뽕", "칼국수", "잔치 국수", "쌀국수", "짜파게티", "냉면")
+        val menuTitles = listOf("라면", "짜장면", "우동", "라멘", "파스타", "볶음면", "짬뽕", "칼국수", "잔치 국수", "쫄면", "쌀국수", "짜파게티", "냉면")
 
         val menuImages = listOf(
             "https://cdn.pixabay.com/photo/2020/09/17/12/25/ramen-5579023_1280.jpg",
@@ -145,6 +145,7 @@ object MenuListUtil {
             "https://cdn.pixabay.com/photo/2021/02/11/01/58/jambong-6004032_1280.jpg",
             "https://cdn.pixabay.com/photo/2014/09/24/09/30/seafood-458853_1280.jpg",
             "https://cdn.pixabay.com/photo/2018/05/19/23/51/noodles-3414665_1280.jpg",
+            "https://cdn.pixabay.com/photo/2017/09/10/14/23/jjolmyeon-2735716_1280.jpg",
             "https://cdn.pixabay.com/photo/2016/02/18/06/42/vietnam-1206576_1280.jpg",
             "https://cdn.pixabay.com/photo/2021/02/11/02/00/chapaguri-6004034_1280.jpg",
             "https://cdn.pixabay.com/photo/2018/09/17/05/14/water-noodle-3683050_1280.jpg"
