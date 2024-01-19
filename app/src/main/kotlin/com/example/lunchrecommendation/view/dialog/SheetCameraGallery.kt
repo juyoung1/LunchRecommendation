@@ -114,7 +114,7 @@ class SheetCameraGallery(private val imageCapturedCallback: (String) -> Unit) : 
         }
     }
 
-    // 카메라 실행
+    /** 카메라 실행 */
     private fun openCamera() {
 
         val photoFile: File? = createImageFile()
@@ -126,7 +126,7 @@ class SheetCameraGallery(private val imageCapturedCallback: (String) -> Unit) : 
         }
     }
 
-    // 이미지 파일 생성
+    /** 이미지 파일 생성 */
     private fun createImageFile(): File? {
 
         val timeStamp: String = SimpleDateFormat("yyyyMMdd_HHmmss", Locale.getDefault()).format(Date())
@@ -138,7 +138,7 @@ class SheetCameraGallery(private val imageCapturedCallback: (String) -> Unit) : 
         }
     }
 
-    // 사진 촬영
+    /** 사진 촬영 */
     private val takePicture: ActivityResultLauncher<Uri> = registerForActivityResult(ActivityResultContracts.TakePicture()) { success ->
 
         if (success) {
@@ -148,7 +148,7 @@ class SheetCameraGallery(private val imageCapturedCallback: (String) -> Unit) : 
         }
     }
 
-    // 갤러리 열기
+    /** 갤러리 열기 */
     private fun openGallery() {
 
         val gallery = Intent(Intent.ACTION_PICK)
@@ -157,7 +157,7 @@ class SheetCameraGallery(private val imageCapturedCallback: (String) -> Unit) : 
         pickImageLauncher.launch(gallery)
     }
 
-    // 이미지 선택 런처
+    /** 이미지 선택 런처 */
     private val pickImageLauncher: ActivityResultLauncher<Intent> = registerForActivityResult(ActivityResultContracts.StartActivityForResult()) { result ->
         if (result.resultCode == RESULT_OK) {
             val data: Intent? = result.data

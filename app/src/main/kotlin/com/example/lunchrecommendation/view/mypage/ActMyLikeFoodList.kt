@@ -31,6 +31,7 @@ class ActMyLikeFoodList : BaseContractActivity<ActMyLikeFoodListBinding>() {
         fullScreen = false
         bgStatusBar = R.color.color_f5f5f5
 
+        // 내 찜 목록 이미지 데이터
         mData.clear()
         for (menuImage in myLikedFood) {
 
@@ -58,6 +59,7 @@ class ActMyLikeFoodList : BaseContractActivity<ActMyLikeFoodListBinding>() {
             // 헤더
             incHeader.tvTitle.text = getString(R.string.home_text_3)
 
+            // 찜한 이미지 없을 때 텍스트
             if (myLikedFood.isEmpty()) {
 
                 tvNoLikeFood.visibility = View.VISIBLE

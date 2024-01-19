@@ -1,5 +1,5 @@
 <resources>
-    <string name="app_name">LunchRecommendation</string>
+    <string name="app_name">점메추</string>
 
     <string name="menu">메뉴</string>
     <string name="myPage">마이 페이지</string>

@@ -23,7 +23,6 @@ import dagger.hilt.android.AndroidEntryPoint
 /**
  * 홈 - 메뉴
  */
-@AndroidEntryPoint
 class FrgMenu : BaseFragment<FrgMenuBinding>() {
 
     // 뷰페이저 관련 변수
@@ -44,11 +43,11 @@ class FrgMenu : BaseFragment<FrgMenuBinding>() {
             val category = when(menu) {
 
                 0 -> {"한식"}
-                1 -> {"면"}
+                1 -> {"일식"}
                 2 -> {"양식"}
-                3 -> {"분식"}
-                4 -> {"일식"}
-                5 -> {"중식"}
+                3 -> {"중식"}
+                4 -> {"분식"}
+                5 -> {"면"}
                 6 -> {"패스트 푸드"}
                 else -> {""}
             }
@@ -109,19 +108,19 @@ class FrgMenu : BaseFragment<FrgMenuBinding>() {
             activity?.let { act ->
 
                 val frgKoreaFood = FrgKoreaFood.newInstance().apply {  }
-                val frgNoodle = FrgNoodle.newInstance().apply {  }
-                val frgWestFood = FrgWestFood.newInstance().apply {  }
-                val frgSnackBar = FrgSnackBar.newInstance().apply {  }
                 val frgJapanFood = FrgJapanFood.newInstance().apply {  }
+                val frgWestFood = FrgWestFood.newInstance().apply {  }
                 val frgChinaFood = FrgChinaFood.newInstance().apply {  }
+                val frgSnackBar = FrgSnackBar.newInstance().apply {  }
+                val frgNoodle = FrgNoodle.newInstance().apply {  }
                 val frgFastFood = FrgFastFood.newInstance().apply {  }
 
                 fragments.add(frgKoreaFood)
-                fragments.add(frgNoodle)
-                fragments.add(frgWestFood)
-                fragments.add(frgSnackBar)
                 fragments.add(frgJapanFood)
+                fragments.add(frgWestFood)
                 fragments.add(frgChinaFood)
+                fragments.add(frgSnackBar)
+                fragments.add(frgNoodle)
                 fragments.add(frgFastFood)
 
                 viewPagerAdapter = ViewPagerAdapter(act as BaseActivity<*>, fragments)

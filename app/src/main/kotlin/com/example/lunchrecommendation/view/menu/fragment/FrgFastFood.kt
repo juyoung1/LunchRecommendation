@@ -35,8 +35,8 @@ class FrgFastFood : BaseFragment<FrgMenuListBinding>() {
         mData.clear()
         mData.addAll(MenuListUtil.fastFood())
 
-        for (item in mData) {
-            item.isSelected = myLikedFood.contains(item.menuImage.toString())
+        for (menu in mData) {
+            menu.isSelected = myLikedFood.contains(menu.menuImage.toString())
         }
     }
 
@@ -78,6 +78,7 @@ class FrgFastFood : BaseFragment<FrgMenuListBinding>() {
                                 // 찜한 이미지 PreferenceUtil 에 저장, 다른 프래그먼트에서 찜한 이미지에 추가하여 저장
                                 val existingLikedFood = PreferencesUtil.getPreferencesStringSet("myLikeFood").toMutableSet()
 
+                                // 찜 선택/해제 시 찜한 목록에 추가/제거
                                 if (selectItem.isSelected) {
                                     existingLikedFood.add(selectItem.menuImage.toString())
                                 } else {

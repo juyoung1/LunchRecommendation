@@ -20,7 +20,6 @@ import dagger.hilt.android.AndroidEntryPoint
 /**
  * 홈 - 마이 페이지
  */
-@AndroidEntryPoint
 class FrgMyPage : BaseFragment<FrgMyPageBinding>() {
 
     // 프로필 편집 바텀시트

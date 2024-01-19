@@ -39,6 +39,7 @@ class FrgMenuRoulette : BaseFragment<FrgMenuRouletteBinding>() {
      */
     private fun initDisplay() {
 
+        // 룰렛 메뉴 세팅
         rouletteMenuSetting()
     }
 
@@ -71,11 +72,12 @@ class FrgMenuRoulette : BaseFragment<FrgMenuRouletteBinding>() {
             // MenuUtil 에서 모든 메뉴 중 무작위로 6개 메뉴 가져옴
             val randomMenus = MenuListUtil.getAllMenus().shuffled().take(6)
 
-            // 메뉴 데이터 중 메뉴 이름 가져옴
+            // 무작위로 가져온 메뉴 데이터 중 메뉴 이름 가져옴
             val rouletteDataList = randomMenus.map { menuDao ->
                 menuDao.menu.toString()
             }
 
+            // 룰렛 메뉴 개수 6개 설정
             roulette.rouletteSize = 6
             roulette.setRouletteDataList(rouletteDataList)
         }
@@ -128,6 +130,7 @@ class FrgMenuRoulette : BaseFragment<FrgMenuRouletteBinding>() {
         dotAnimator.repeatMode = ValueAnimator.REVERSE
 
         dotAnimator.addUpdateListener { valueAnimator ->
+
             val dotsCount = valueAnimator.animatedValue as Int
             val dots = StringBuilder("오늘의 점심 메뉴는")
             repeat(dotsCount) {
@@ -135,14 +138,16 @@ class FrgMenuRoulette : BaseFragment<FrgMenuRouletteBinding>() {
             }
             mBinding.tvTodayMenu.text = dots.toString()
         }
-
         dotAnimator.start()
     }
 
     /**
      * 룰렛 종료 시 스트링 애니메이션 종료
      */
-    private fun stopDotAnimation() { dotAnimator.cancel() }
+    private fun stopDotAnimation() {
+
+        dotAnimator.cancel()
+    }
 
     companion object {
 

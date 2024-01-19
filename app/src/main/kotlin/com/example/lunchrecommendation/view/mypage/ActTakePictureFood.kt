@@ -32,15 +32,15 @@ import java.util.Locale
  */
 class ActTakePictureFood : BaseContractActivity<ActTakePictureFoodBinding>() {
 
-    // 찍었던 사진 보여주기
-    private val savedFoodPhotos = PreferencesUtil.getPreferencesStringSet("saveFoodPhotos")
-
-    private lateinit var currentPhotoPath: String
-
     companion object {
         private const val CAMERA_PERMISSION_REQUEST_CODE = 1001
         private const val GALLERY_PERMISSION_REQUEST_CODE = 1002
     }
+
+    // 찍었던 사진 보여주기
+    private val savedFoodPhotos = PreferencesUtil.getPreferencesStringSet("saveFoodPhotos")
+
+    private lateinit var currentPhotoPath: String
 
     // 내 찜 목록 리스트 어댑터
     private lateinit var mAdapter: TakePictureFoodListAdapter
@@ -160,13 +160,13 @@ class ActTakePictureFood : BaseContractActivity<ActTakePictureFoodBinding>() {
         }
     }
 
-    // 찍은 사진 없을 시 문구 노출
+    /** 찍은 사진 없을 시 문구 노출 */
     fun noPhotoVisibility() {
 
         mBinding.tvNoFoodPhoto.visibility = if (mData.isEmpty()) View.VISIBLE else View.GONE
     }
 
-    // 카메라 실행
+    /** 카메라 실행 */
     private fun openCamera() {
 
         val photoFile: File? = createImageFile()
@@ -178,7 +178,7 @@ class ActTakePictureFood : BaseContractActivity<ActTakePictureFoodBinding>() {
         }
     }
 
-    // 이미지 파일 생성
+    /** 이미지 파일 생성 */
     private fun createImageFile(): File? {
 
         val timeStamp: String = SimpleDateFormat("yyyyMMdd_HHmmss", Locale.getDefault()).format(Date())
@@ -190,14 +190,14 @@ class ActTakePictureFood : BaseContractActivity<ActTakePictureFoodBinding>() {
         }
     }
 
-    // 사진 촬영
+    /** 사진 촬영 */
     private val takePicture: ActivityResultLauncher<Uri> = registerForActivityResult(ActivityResultContracts.TakePicture()) { success ->
             if (success) {
                 mAdapter.addPhoto(Uri.fromFile(File(currentPhotoPath)))
             }
         }
 
-    // 갤러리 열기
+    /** 갤러리 열기 */
     private fun openGallery() {
 
         val gallery = Intent(Intent.ACTION_PICK)
@@ -206,7 +206,7 @@ class ActTakePictureFood : BaseContractActivity<ActTakePictureFoodBinding>() {
         pickImageLauncher.launch(gallery)
     }
 
-    // 이미지 선택 런처
+    /** 이미지 선택 런처 */
     private val pickImageLauncher: ActivityResultLauncher<Intent> = registerForActivityResult(ActivityResultContracts.StartActivityForResult()) { result ->
             if (result.resultCode == RESULT_OK) {
                 val data: Intent? = result.data
