@@ -15,7 +15,6 @@ import com.example.lunchrecommendation.view.mypage.ActAppInfo
 import com.example.lunchrecommendation.view.mypage.ActMyLikeFoodList
 import com.example.lunchrecommendation.view.mypage.ActTakePictureFood
 import com.example.lunchrecommendation.view.nickname.ActNickName
-import dagger.hilt.android.AndroidEntryPoint
 
 /**
  * 홈 - 마이 페이지
@@ -76,7 +75,19 @@ class FrgMyPage : BaseFragment<FrgMyPageBinding>() {
                     sheetProfileEdit?.dismiss()
                     sheetProfileEdit = SheetProfileEdit {
                         tvNickName.text = PreferencesUtil.getPreferencesString("nickName")
-                        Glide.with(ctx).load(PreferencesUtil.getPreferencesString("profileImage")).into(ivProfile)
+
+                        // 프로필 기본 이미지 일 때 ivNoProfile 노출
+                        if (PreferencesUtil.getPreferencesString("profileImage").isNotEmpty()) {
+
+                            ivProfile.visibility = View.VISIBLE
+                            ivNoProfile.visibility = View.GONE
+                            Glide.with(ctx).load(PreferencesUtil.getPreferencesString("profileImage")).into(ivProfile)
+
+                        } else {
+
+                            ivProfile.visibility = View.GONE
+                            ivNoProfile.visibility = View.VISIBLE
+                        }
                     }
                     sheetProfileEdit?.show(parentFragmentManager, "")
                 }

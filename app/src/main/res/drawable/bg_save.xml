@@ -3,21 +3,17 @@
     android:color="@color/defaultRippleColor">
 
     <item android:id="@android:id/mask">
-
         <shape android:shape="rectangle">
             <corners android:radius="40dp" />
             <solid android:color="@color/color_ff891c" />
         </shape>
-
     </item>
 
     <item android:id="@android:id/background">
-
         <shape android:shape="rectangle">
             <corners android:radius="40dp" />
             <solid android:color="@color/color_ff891c" />
         </shape>
-
     </item>
 
 </ripple>

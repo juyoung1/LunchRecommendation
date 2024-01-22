@@ -99,7 +99,16 @@ class SheetProfileEdit(val function: () -> Unit) : BaseBottomSheetFragment<Sheet
 
                 } else {
 
-                    if (profileImage.isNotEmpty()) { PreferencesUtil.setPreferencesString("profileImage", profileImage) }
+                    // 프로필 이미지 있으면 이미지 저장
+                    if (profileImage.isNotEmpty()) {
+
+                        PreferencesUtil.setPreferencesString("profileImage", profileImage)
+
+                        // 기본 프로필 변경 시 기존 저장된 이미지 제거
+                    } else if (ivNoProfile.visibility == View.VISIBLE) {
+
+                        PreferencesUtil.deletePreferences("profileImage")
+                    }
                     PreferencesUtil.setPreferencesString("nickName", nickName)
                     PreferencesUtil.setPreferencesString("favoriteFood", favoriteFood)
                     function()
@@ -113,8 +122,19 @@ class SheetProfileEdit(val function: () -> Unit) : BaseBottomSheetFragment<Sheet
                 val sheetCameraGallery = SheetCameraGallery { imagePath ->
 
                     profileImage = imagePath
-                    ivNoProfile.visibility = View.GONE
-                    ivProfile.setImageURI(Uri.parse(profileImage))
+
+                    // 전달받은 프로필 이미지 없는 경우 ivNoProfile 노출
+                    if (profileImage.isNotEmpty()) {
+
+                        ivNoProfile.visibility = View.GONE
+                        ivProfile.visibility = View.VISIBLE
+                        ivProfile.setImageURI(Uri.parse(profileImage))
+
+                    } else {
+
+                        ivNoProfile.visibility = View.VISIBLE
+                        ivProfile.visibility = View.GONE
+                    }
                 }
                 sheetCameraGallery.show(childFragmentManager, "SheetCameraGallery")
             }
