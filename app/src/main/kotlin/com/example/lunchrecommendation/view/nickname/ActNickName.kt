@@ -7,6 +7,7 @@ import android.view.View
 import com.example.lunchrecommendation.R
 import com.example.lunchrecommendation.base.BaseContractActivity
 import com.example.lunchrecommendation.databinding.ActNicknameBinding
+import com.example.lunchrecommendation.extensions.focusAndShowKeyboard
 import com.example.lunchrecommendation.util.CommonUtils
 import com.example.lunchrecommendation.util.PreferencesUtil
 import com.example.lunchrecommendation.view.home.activity.ActHome
@@ -68,6 +69,7 @@ class ActNickName : BaseContractActivity<ActNicknameBinding>() {
 
                     flags = Intent.FLAG_ACTIVITY_CLEAR_TOP
                     startActivity(this)
+                    finish()
                 }
             }
         }
@@ -103,6 +105,7 @@ class ActNickName : BaseContractActivity<ActNicknameBinding>() {
                     override fun onTextChanged(s: CharSequence?, start: Int, before: Int, count: Int) {}
                 })
             }
+            etNickName.focusAndShowKeyboard(this@ActNickName)
         }
     }
 }
