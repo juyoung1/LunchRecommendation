@@ -192,10 +192,10 @@ class ActTakePictureFood : BaseContractActivity<ActTakePictureFoodBinding>() {
 
     /** 사진 촬영 */
     private val takePicture: ActivityResultLauncher<Uri> = registerForActivityResult(ActivityResultContracts.TakePicture()) { success ->
-            if (success) {
-                mAdapter.addPhoto(Uri.fromFile(File(currentPhotoPath)))
-            }
+        if (success) {
+            mAdapter.addPhoto(Uri.fromFile(File(currentPhotoPath)))
         }
+    }
 
     /** 갤러리 열기 */
     private fun openGallery() {
@@ -208,11 +208,11 @@ class ActTakePictureFood : BaseContractActivity<ActTakePictureFoodBinding>() {
 
     /** 이미지 선택 런처 */
     private val pickImageLauncher: ActivityResultLauncher<Intent> = registerForActivityResult(ActivityResultContracts.StartActivityForResult()) { result ->
-            if (result.resultCode == RESULT_OK) {
-                val data: Intent? = result.data
-                data!!.data?.let {
-                    mAdapter.addPhoto(it)
-                }
+        if (result.resultCode == RESULT_OK) {
+            val data: Intent? = result.data
+            data!!.data?.let {
+                mAdapter.addPhoto(it)
             }
         }
+    }
 }

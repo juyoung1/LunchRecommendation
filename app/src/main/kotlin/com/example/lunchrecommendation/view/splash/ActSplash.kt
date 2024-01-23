@@ -52,20 +52,37 @@ class ActSplash : BaseContractActivity<ActSplashBinding>() {
 
             if (PreferencesUtil.getPreferencesBoolean("nickNameView")) {
 
-                Intent(this@ActSplash, ActHome::class.java).apply {
-                    flags = Intent.FLAG_ACTIVITY_CLEAR_TOP
-                    startActivity(this)
-                    finish()
-                }
+                moveToHome()
+
             } else {
 
-                Intent(this@ActSplash, ActNickName::class.java).apply {
-                    flags = Intent.FLAG_ACTIVITY_CLEAR_TOP
-                    startActivity(this)
-                    finish()
-                }
+                moveToNickName()
             }
         }, 1000)
+    }
+
+    /**
+     * 홈 화면 이동
+     */
+    private fun moveToHome() {
+
+        Intent(this@ActSplash, ActHome::class.java).apply {
+            flags = Intent.FLAG_ACTIVITY_CLEAR_TOP
+            startActivity(this)
+            finish()
+        }
+    }
+
+    /**
+     * 닉네임 입력 화면 이동
+     */
+    private fun moveToNickName() {
+
+        Intent(this@ActSplash, ActNickName::class.java).apply {
+            flags = Intent.FLAG_ACTIVITY_CLEAR_TOP
+            startActivity(this)
+            finish()
+        }
     }
 
     /**
