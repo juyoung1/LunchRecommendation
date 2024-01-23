@@ -11,6 +11,7 @@ import com.example.lunchrecommendation.base.BaseFragment
 import com.example.lunchrecommendation.databinding.FrgMyPageBinding
 import com.example.lunchrecommendation.util.PreferencesUtil
 import com.example.lunchrecommendation.view.dialog.SheetProfileEdit
+import com.example.lunchrecommendation.view.home.activity.ActHome
 import com.example.lunchrecommendation.view.mypage.ActAppInfo
 import com.example.lunchrecommendation.view.mypage.ActMyLikeFoodList
 import com.example.lunchrecommendation.view.mypage.ActTakePictureFood
@@ -127,6 +128,7 @@ class FrgMyPage : BaseFragment<FrgMyPageBinding>() {
 
                     openPopup(getString(R.string.popup_text_1), getString(R.string.popup_text_4), getString(R.string.popup_text_2), {}, getString(R.string.confirm),
                         {
+                            PreferencesUtil.deletePreferences("nickNameView")
                             PreferencesUtil.deletePreferences("nickName")
                             PreferencesUtil.deletePreferences("favoriteFood")
                             PreferencesUtil.deletePreferences("profileImage")
@@ -150,6 +152,7 @@ class FrgMyPage : BaseFragment<FrgMyPageBinding>() {
 
             flags = Intent.FLAG_ACTIVITY_CLEAR_TOP
             startActivity(this)
+            activity?.finish()
         }
     }
 
