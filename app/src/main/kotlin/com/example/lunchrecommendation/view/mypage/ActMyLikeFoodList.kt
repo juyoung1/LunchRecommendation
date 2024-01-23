@@ -1,5 +1,6 @@
 package com.example.lunchrecommendation.view.mypage
 
+import android.content.Intent
 import android.view.View
 import androidx.recyclerview.widget.GridLayoutManager
 import com.example.lunchrecommendation.R
@@ -10,6 +11,9 @@ import com.example.lunchrecommendation.databinding.ActMyLikeFoodListBinding
 import com.example.lunchrecommendation.util.CommonUtils
 import com.example.lunchrecommendation.util.PreferencesUtil
 import com.example.lunchrecommendation.view.adapter.MyFavoriteFoodListAdapter
+import com.example.lunchrecommendation.view.home.activity.ActHome
+import com.example.lunchrecommendation.view.home.fragment.FrgMenu
+import com.example.lunchrecommendation.view.home.fragment.FrgMenuRoulette
 
 /**
  * 마이 페이지 - 내 찜 목록
@@ -62,7 +66,7 @@ class ActMyLikeFoodList : BaseContractActivity<ActMyLikeFoodListBinding>() {
             // 찜한 이미지 없을 때 텍스트
             if (myLikedFood.isEmpty()) {
 
-                tvNoLikeFood.visibility = View.VISIBLE
+                clNoLikeFood.visibility = View.VISIBLE
                 rvList.visibility = View.GONE
             }
         }
@@ -77,6 +81,17 @@ class ActMyLikeFoodList : BaseContractActivity<ActMyLikeFoodListBinding>() {
 
             /** 뒤로 가기 */
             incHeader.ivBack.setOnClickListener { onBackPressed() }
+
+            /** 찜 하러 가기 */
+            tvGoLikeFood.setOnClickListener {
+
+                Intent(this@ActMyLikeFoodList, ActHome::class.java).apply {
+
+                    flags = Intent.FLAG_ACTIVITY_SINGLE_TOP
+                    startActivity(this)
+                    finishAffinity()
+                }
+            }
         }
     }
 
@@ -101,9 +116,6 @@ class ActMyLikeFoodList : BaseContractActivity<ActMyLikeFoodListBinding>() {
 
                     override fun selectItem(position: Int) {
 
-                        if (mData.size > position) {
-
-                        }
                     }
                 }
             }

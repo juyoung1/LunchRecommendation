@@ -62,6 +62,7 @@ class FrgFastFood : BaseFragment<FrgMenuListBinding>() {
                     mAdapter = MenuListAdapter(ctx, mData)
                     layoutManager = GridLayoutManager(ctx, spanCount)
                     adapter = mAdapter
+                    itemAnimator = null
                     addItemDecoration(GridLayoutItemDecoration(context, itemGap, itemGap, spanCount))
                     mAdapter.selectItem = object : MenuListAdapter.SelectItem {
 

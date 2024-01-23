@@ -14,18 +14,58 @@
         app:layout_constraintTop_toTopOf="parent" />
 
     <!-- 찜한 메뉴 없을 시 노출 -->
-    <androidx.appcompat.widget.AppCompatTextView
-        android:id="@+id/tvNoLikeFood"
-        style="@style/robotoRegular.24"
+    <androidx.constraintlayout.widget.ConstraintLayout
+        android:id="@+id/clNoLikeFood"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:text="@string/home_text_7"
-        android:textColor="@color/color_999999"
-        android:visibility="gone"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent" />
+        android:visibility="gone"
+        app:layout_constraintTop_toTopOf="parent">
+
+        <androidx.appcompat.widget.AppCompatTextView
+            android:id="@+id/tvNoLikeFoodTitle"
+            style="@style/robotoBold.20"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:gravity="center"
+            android:text="@string/home_text_7"
+            android:textColor="@color/black"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent" />
+
+        <androidx.appcompat.widget.AppCompatTextView
+            android:id="@+id/tvNoLikeFoodSubTitle"
+            style="@style/robotoRegular.16"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="20dp"
+            android:gravity="center"
+            android:text="@string/home_text_21"
+            android:textColor="@color/color_999999"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@id/tvNoLikeFoodTitle" />
+
+        <androidx.appcompat.widget.AppCompatTextView
+            android:id="@+id/tvGoLikeFood"
+            style="@style/robotoRegular.13"
+            android:layout_width="wrap_content"
+            android:layout_height="40dp"
+            android:layout_marginTop="20dp"
+            android:background="@drawable/bg_no_like_food"
+            android:gravity="center"
+            android:paddingStart="15dp"
+            android:paddingEnd="15dp"
+            android:text="@string/home_text_22"
+            android:textColor="@color/black"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@id/tvNoLikeFoodSubTitle" />
+
+    </androidx.constraintlayout.widget.ConstraintLayout>
 
     <!-- 찜한 메뉴 리스트 -->
     <androidx.recyclerview.widget.RecyclerView

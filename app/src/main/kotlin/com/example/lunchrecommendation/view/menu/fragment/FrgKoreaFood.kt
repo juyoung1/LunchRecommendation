@@ -5,6 +5,7 @@ import android.view.LayoutInflater
 import android.view.ViewGroup
 import android.widget.Toast
 import androidx.recyclerview.widget.GridLayoutManager
+import androidx.recyclerview.widget.SimpleItemAnimator
 import com.example.lunchrecommendation.R
 import com.example.lunchrecommendation.base.BaseFragment
 import com.example.lunchrecommendation.component.GridLayoutItemDecoration
@@ -66,6 +67,7 @@ class FrgKoreaFood : BaseFragment<FrgMenuListBinding>() {
                     mAdapter = MenuListAdapter(ctx, mData)
                     layoutManager = GridLayoutManager(ctx, spanCount)
                     adapter = mAdapter
+                    itemAnimator = null
                     addItemDecoration(GridLayoutItemDecoration(context, itemGap, itemGap, spanCount))
                     mAdapter.selectItem = object : MenuListAdapter.SelectItem {
 

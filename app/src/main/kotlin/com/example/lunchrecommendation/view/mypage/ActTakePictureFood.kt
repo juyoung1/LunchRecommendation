@@ -163,7 +163,7 @@ class ActTakePictureFood : BaseContractActivity<ActTakePictureFoodBinding>() {
     /** 찍은 사진 없을 시 문구 노출 */
     fun noPhotoVisibility() {
 
-        mBinding.tvNoFoodPhoto.visibility = if (mData.isEmpty()) View.VISIBLE else View.GONE
+        mBinding.clNoFoodPhoto.visibility = if (mData.isEmpty()) View.VISIBLE else View.GONE
     }
 
     /** 카메라 실행 */
