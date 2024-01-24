@@ -88,8 +88,8 @@ class SheetProfileEdit(val function: () -> Unit) : BaseBottomSheetFragment<Sheet
             /** 저장 */
             tvSave.setOnClickListener {
 
-                nickName = etNickName.text.toString()
-                favoriteFood = etFavoriteFood.text.toString()
+                nickName = etNickName.text.toString().trim()
+                favoriteFood = etFavoriteFood.text.toString().trim()
 
                 // 닉네임 비었을 시 경고 문구 노출
                 if (nickName.isEmpty()) {

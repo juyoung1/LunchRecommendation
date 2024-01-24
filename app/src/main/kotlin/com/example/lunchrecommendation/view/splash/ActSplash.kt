@@ -100,7 +100,7 @@ class ActSplash : BaseContractActivity<ActSplashBinding>() {
         for (index in indices) {
 
             // 폰트 변경
-            spannableString.setSpan(StyleSpan(R.font.samsung_sharpsans_bold), index, index + 1, Spannable.SPAN_EXCLUSIVE_EXCLUSIVE)
+            spannableString.setSpan(StyleSpan(R.font.roboto_bold), index, index + 1, Spannable.SPAN_EXCLUSIVE_EXCLUSIVE)
 
             // 텍스트 크기 변경
             spannableString.setSpan(AbsoluteSizeSpan(textSize, true), index, index + 1, Spannable.SPAN_EXCLUSIVE_EXCLUSIVE)

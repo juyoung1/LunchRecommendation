@@ -79,7 +79,17 @@ class ActHome : BaseContractActivity<ActHomeBinding>() {
         with( mBinding ) {
 
             /** 메뉴 탭 */
-            incNaviMenu.btnNavi.setOnClickListener { changeMainFragment(Enum.Page.Menu) }
+            incNaviMenu.btnNavi.setOnClickListener {
+
+                if (!it.isSelected) {
+
+                    changeMainFragment(Enum.Page.Menu)
+
+                } else {
+
+                    return@setOnClickListener
+                }
+            }
 
             /** 룰렛 탭 */
             incNaviRoulette.btnNavi.setOnClickListener {

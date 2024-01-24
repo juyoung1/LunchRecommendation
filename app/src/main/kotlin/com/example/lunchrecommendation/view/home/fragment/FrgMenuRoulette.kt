@@ -26,13 +26,11 @@ import com.google.android.gms.ads.MobileAds
 class FrgMenuRoulette : BaseFragment<FrgMenuRouletteBinding>() {
 
     /** 룰렛 돌리는 중 스트링 애니메이션 */
-    private var dotAnimator = ValueAnimator.ofInt(0, 5)
+    private var dotAnimator = ValueAnimator.ofInt(0, 4)
 
     override fun getViewBinding(inflater: LayoutInflater, container: ViewGroup?) = FrgMenuRouletteBinding.inflate(inflater, container, false)
 
-    override fun initData() {
-
-    }
+    override fun initData() {}
 
     override fun initView() {
 

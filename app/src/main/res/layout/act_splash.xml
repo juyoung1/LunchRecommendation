@@ -45,7 +45,7 @@
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:bufferType="spannable"
-            android:fontFamily="@font/samsung_sharpsans_medium"
+            android:fontFamily="@font/samsung_sharpsans_regular"
             android:gravity="center"
             android:paddingTop="40dp"
             android:paddingBottom="40dp"
