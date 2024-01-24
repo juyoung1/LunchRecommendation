@@ -14,8 +14,24 @@
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent" />
 
+    <!-- 로티 -->
+    <com.airbnb.lottie.LottieAnimationView
+        android:id="@+id/lottie"
+        android:layout_width="100dp"
+        android:layout_height="0dp"
+        android:layout_marginBottom="129.5dp"
+        android:visibility="gone"
+        app:layout_constraintBottom_toTopOf="@id/ivDirection"
+        app:layout_constraintEnd_toEndOf="@id/roulette"
+        app:layout_constraintStart_toStartOf="@id/roulette"
+        app:layout_constraintTop_toBottomOf="@id/tvTodayMenu"
+        app:lottie_autoPlay="false"
+        app:lottie_loop="true"
+        app:lottie_rawRes="@raw/run_lottie" />
+
     <!-- 룰렛 결과 화살표 -->
     <androidx.appcompat.widget.AppCompatImageView
+        android:id="@+id/ivDirection"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginBottom="10dp"
@@ -29,10 +45,10 @@
     <!-- 룰렛 결과 텍스트 노출 -->
     <androidx.appcompat.widget.AppCompatTextView
         android:id="@+id/tvTodayMenu"
-        style="@style/robotoRegular.21"
+        style="@style/robotoMedium.18"
         android:layout_width="0dp"
         android:layout_height="wrap_content"
-        android:layout_marginTop="20dp"
+        android:layout_marginTop="15dp"
         android:bufferType="spannable"
         android:gravity="center"
         android:text="@string/home_text_20"
@@ -56,6 +72,18 @@
         android:textColor="@color/color_999999"
         app:layout_constraintBottom_toBottomOf="@id/roulette"
         app:layout_constraintEnd_toEndOf="@id/roulette" />
+
+    <com.google.android.gms.ads.AdView xmlns:ads="http://schemas.android.com/apk/res-auto"
+        android:id="@+id/adView"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginBottom="10dp"
+        ads:adSize="BANNER"
+        ads:adUnitId="ca-app-pub-3940256099942544/6300978111"
+        ads:layout_constraintBottom_toTopOf="@id/llRoulette"
+        ads:layout_constraintEnd_toEndOf="parent"
+        ads:layout_constraintStart_toStartOf="parent">
+    </com.google.android.gms.ads.AdView>
 
     <!-- 룰렛 돌리기 버튼 -->
     <androidx.appcompat.widget.LinearLayoutCompat

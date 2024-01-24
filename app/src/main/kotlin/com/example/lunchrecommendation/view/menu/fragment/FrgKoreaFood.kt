@@ -2,8 +2,10 @@ package com.example.lunchrecommendation.view.menu.fragment
 
 import android.os.Bundle
 import android.view.LayoutInflater
+import android.view.View
 import android.view.ViewGroup
 import android.widget.Toast
+import androidx.lifecycle.lifecycleScope
 import androidx.recyclerview.widget.GridLayoutManager
 import androidx.recyclerview.widget.SimpleItemAnimator
 import com.example.lunchrecommendation.R
@@ -16,6 +18,10 @@ import com.example.lunchrecommendation.util.ToastUtil
 import com.example.lunchrecommendation.view.adapter.MenuListAdapter
 import com.example.lunchrecommendation.view.home.activity.ActHome
 import com.example.lunchrecommendation.view.util.MenuListUtil
+import kotlinx.coroutines.Dispatchers
+import kotlinx.coroutines.GlobalScope
+import kotlinx.coroutines.delay
+import kotlinx.coroutines.launch
 
 /**
  * 메뉴 탭 - 한식
@@ -30,6 +36,9 @@ class FrgKoreaFood : BaseFragment<FrgMenuListBinding>() {
 
     // 내가 찜했던 메뉴
     private val myLikedFood = PreferencesUtil.getPreferencesStringSet("myLikeFood")
+
+    // Shimmer Layout 실행 되었는지 여부
+    private var loadingVisible = false
 
     override fun getViewBinding(inflater: LayoutInflater, container: ViewGroup?) = FrgMenuListBinding.inflate(inflater, container, false)
 
@@ -46,7 +55,9 @@ class FrgKoreaFood : BaseFragment<FrgMenuListBinding>() {
     }
 
     override fun initView() {
+
         initRecyclerView()
+        showLoadingVisible()
     }
 
     /**
@@ -102,6 +113,52 @@ class FrgKoreaFood : BaseFragment<FrgMenuListBinding>() {
                 }
             }
         }
+    }
+
+    /**
+     * Shimmer Layout
+     */
+    private fun showLoading() {
+
+        lifecycleScope.launch {
+            showShimmerLayout(isLoading = true)
+            delay(800)
+
+            mAdapter.notifyDataSetChanged()
+
+            showShimmerLayout(isLoading = false)
+        }
+    }
+
+    /**
+     * Shimmer Layout Visible
+     */
+    private fun showShimmerLayout(isLoading: Boolean) {
+
+        with(mBinding) {
+
+            if (isLoading) {
+
+                shimmerLayout.startShimmer()
+                shimmerLayout.visibility = View.VISIBLE
+                rvList.visibility = View.GONE
+
+            } else {
+
+                shimmerLayout.stopShimmer()
+                shimmerLayout.visibility = View.GONE
+                rvList.visibility = View.VISIBLE
+            }
+        }
+    }
+
+    /**
+     *  Shimmer 탭 선택 시 한번만 보여줌
+     */
+    private fun showLoadingVisible() {
+
+        if (!loadingVisible) { showLoading() }
+        loadingVisible = true
     }
 
     companion object {

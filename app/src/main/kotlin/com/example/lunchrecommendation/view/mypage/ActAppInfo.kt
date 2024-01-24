@@ -2,6 +2,8 @@ package com.example.lunchrecommendation.view.mypage
 
 import android.content.Intent
 import android.net.Uri
+import android.util.Log
+import com.example.lunchrecommendation.BuildConfig
 import com.example.lunchrecommendation.R
 import com.example.lunchrecommendation.base.BaseContractActivity
 import com.example.lunchrecommendation.databinding.ActAppInfoBinding
@@ -37,6 +39,9 @@ class ActAppInfo : BaseContractActivity<ActAppInfoBinding>() {
 
             // 헤더
             incHeader.tvTitle.text = getString(R.string.home_text_5)
+
+            // 버전 정보
+            tvVersion.text = getString(R.string.home_text_13, BuildConfig.VERSION_NAME)
         }
     }
 

@@ -8,6 +8,7 @@ import android.text.Spanned
 import android.text.style.AbsoluteSizeSpan
 import android.text.style.StyleSpan
 import android.view.LayoutInflater
+import android.view.View
 import android.view.ViewGroup
 import android.view.animation.LinearInterpolator
 import com.example.lunchrecommendation.R
@@ -16,6 +17,8 @@ import com.example.lunchrecommendation.databinding.FrgMenuRouletteBinding
 import com.example.lunchrecommendation.view.custom.RotateListener
 import com.example.lunchrecommendation.view.home.activity.ActHome
 import com.example.lunchrecommendation.view.util.MenuListUtil
+import com.google.android.gms.ads.AdRequest
+import com.google.android.gms.ads.MobileAds
 
 /**
  * 홈 - 룰렛
@@ -27,7 +30,9 @@ class FrgMenuRoulette : BaseFragment<FrgMenuRouletteBinding>() {
 
     override fun getViewBinding(inflater: LayoutInflater, container: ViewGroup?) = FrgMenuRouletteBinding.inflate(inflater, container, false)
 
-    override fun initData() {}
+    override fun initData() {
+
+    }
 
     override fun initView() {
 
@@ -52,12 +57,13 @@ class FrgMenuRoulette : BaseFragment<FrgMenuRouletteBinding>() {
         with(mBinding) {
 
             /** 룰렛 돌리기 */
-            btnRoulette.setOnClickListener { rotateRoulette() }
+            btnRoulette.setOnClickListener { rotateRoulette(true) }
 
             /** 메뉴 새로고침 */
             tvReset.setOnClickListener {
 
                 rouletteMenuSetting()
+                rotateRoulette(false)
                 tvTodayMenu.text = getString(R.string.home_text_20)
             }
         }
@@ -87,7 +93,7 @@ class FrgMenuRoulette : BaseFragment<FrgMenuRouletteBinding>() {
     /**
      * 룰렛 회전
      */
-    private fun rotateRoulette() {
+    private fun rotateRoulette(isNotReset: Boolean) {
 
         with(mBinding) {
 
@@ -96,29 +102,59 @@ class FrgMenuRoulette : BaseFragment<FrgMenuRouletteBinding>() {
                 /** 룰렛 회전 시작 */
                 override fun onRotateStart() {
 
-                    (activity as ActHome).rouletteNaviBlock(false)
-                    startDotAnimation()
-                    btnRoulette.isEnabled = false
+                    if (isNotReset) {
+
+                        // 로티
+                        lottie.visibility = View.VISIBLE
+                        lottie.playAnimation()
+
+                        // 룰렛 회전 시 클릭 막기
+                        (activity as ActHome).rouletteNaviBlock(false)
+                        startDotAnimation()
+                        tvReset.isClickable = false
+                        btnRoulette.isEnabled = false
+                    }
                 }
 
                 /** 룰렛 회전 종료 */
                 override fun onRotateEnd(result: String) {
 
-                    (activity as ActHome).rouletteNaviBlock(true)
-                    stopDotAnimation()
-                    btnRoulette.isEnabled = true
+                    if (isNotReset) {
 
-                    // 결과 텍스트 설정 및 폰트, 사이즈 적용
-                    val resultText = getString(R.string.home_text_18, result)
-                    val spannableString = SpannableString(resultText)
-                    spannableString.setSpan(AbsoluteSizeSpan(24, true), resultText.indexOf(result), resultText.indexOf(result) + result.length, Spannable.SPAN_EXCLUSIVE_EXCLUSIVE)
-                    spannableString.setSpan(StyleSpan(R.font.samsung_sharpsans_bold), resultText.indexOf(result), resultText.indexOf(result) + result.length, Spanned.SPAN_EXCLUSIVE_EXCLUSIVE)
-                    tvTodayMenu.text = spannableString
+                        // 로티
+                        lottie.visibility = View.GONE
+                        lottie.cancelAnimation()
+
+                        // Todo 테스트 광고
+                        MobileAds.initialize(requireContext()) {}
+                        val adRequest = AdRequest.Builder().build()
+                        mBinding.adView.loadAd(adRequest)
+
+                        // 룰렛 회전 후 클릭 활성화
+                        (activity as ActHome).rouletteNaviBlock(true)
+                        stopDotAnimation()
+                        tvReset.isClickable = true
+                        btnRoulette.isEnabled = true
+
+                        // 결과 텍스트 설정 및 폰트, 사이즈 적용
+                        val resultText = getString(R.string.home_text_18, result)
+                        val spannableString = SpannableString(resultText)
+                        spannableString.setSpan(AbsoluteSizeSpan(24, true), resultText.indexOf(result), resultText.indexOf(result) + result.length, Spannable.SPAN_EXCLUSIVE_EXCLUSIVE)
+                        spannableString.setSpan(StyleSpan(R.font.roboto_bold), resultText.indexOf(result), resultText.indexOf(result) + result.length, Spanned.SPAN_EXCLUSIVE_EXCLUSIVE)
+                        tvTodayMenu.text = spannableString
+                    }
                 }
             }
 
-            val toDegrees = (2000..4000).random().toFloat()
-            roulette.rotateRoulette(toDegrees, 2000, rouletteListener)
+            if (isNotReset) {
+
+                val toDegrees = (2000..4000).random().toFloat()
+                roulette.rotateRoulette(toDegrees, 2000, rouletteListener)
+
+            } else {
+
+                roulette.rotateRoulette(0f, 0, rouletteListener)
+            }
         }
     }
 
@@ -130,7 +166,6 @@ class FrgMenuRoulette : BaseFragment<FrgMenuRouletteBinding>() {
         dotAnimator.duration = 1200
         dotAnimator.interpolator = LinearInterpolator()
         dotAnimator.repeatCount = ValueAnimator.INFINITE
-        dotAnimator.repeatMode = ValueAnimator.REVERSE
 
         dotAnimator.addUpdateListener { valueAnimator ->
 

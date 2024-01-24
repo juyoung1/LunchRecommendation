@@ -91,7 +91,7 @@ class ActNickName : BaseContractActivity<ActNicknameBinding>() {
 
                     override fun afterTextChanged(s: Editable?) {
 
-                        nickName = etNickName.text.toString()
+                        nickName = etNickName.text.toString().trim()
 
                         if (nickName.length > 8) {
                             etNickName.setText(nickName.substring(0, 8))

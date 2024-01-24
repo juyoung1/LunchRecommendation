@@ -157,7 +157,7 @@ class SheetProfileEdit(val function: () -> Unit) : BaseBottomSheetFragment<Sheet
                     override fun onTextChanged(s: CharSequence?, start: Int, before: Int, count: Int) {}
                     override fun afterTextChanged(s: Editable?) {
 
-                        nickName = etNickName.text.toString()
+                        nickName = etNickName.text.toString().trim()
 
                         // 닉네임 입력 8글자로 제한
                         if (nickName.length > 8) {
@@ -182,7 +182,7 @@ class SheetProfileEdit(val function: () -> Unit) : BaseBottomSheetFragment<Sheet
                     override fun onTextChanged(s: CharSequence?, start: Int, before: Int, count: Int) {}
                     override fun afterTextChanged(s: Editable?) {
 
-                        favoriteFood = etFavoriteFood.text.toString()
+                        favoriteFood = etFavoriteFood.text.toString().trim()
 
                         // 최애 음식 입력 8글자로 제한
                         if (favoriteFood.length > 8) {

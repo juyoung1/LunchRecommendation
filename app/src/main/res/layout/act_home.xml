@@ -50,14 +50,6 @@
 
     </androidx.appcompat.widget.LinearLayoutCompat>
 
-    <View
-        android:layout_width="match_parent"
-        android:layout_height="1dp"
-        android:layout_gravity="bottom"
-        android:layout_marginBottom="64dp"
-        android:background="@color/color_cccccc"
-        app:layout_constraintBottom_toBottomOf="parent" />
-
     <FrameLayout
         android:id="@+id/flHome"
         android:layout_width="match_parent"
