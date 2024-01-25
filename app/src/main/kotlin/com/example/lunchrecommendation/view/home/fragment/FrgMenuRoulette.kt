@@ -117,33 +117,37 @@ class FrgMenuRoulette : BaseFragment<FrgMenuRouletteBinding>() {
                 /** 룰렛 회전 종료 */
                 override fun onRotateEnd(result: String) {
 
-                    if (isNotReset) {
+                    context?.let { ctx ->
 
-                        // 로티
-                        lottie.visibility = View.GONE
-                        lottie.cancelAnimation()
+                        if (isNotReset) {
 
-                        // Todo 테스트 광고
-                        MobileAds.initialize(requireContext()) {}
-                        val adRequest = AdRequest.Builder().build()
-                        mBinding.adView.loadAd(adRequest)
+                            // 로티
+                            lottie.visibility = View.GONE
+                            lottie.cancelAnimation()
 
-                        // 룰렛 회전 후 클릭 활성화
-                        (activity as ActHome).rouletteNaviBlock(true)
-                        stopDotAnimation()
-                        tvReset.isClickable = true
-                        btnRoulette.isEnabled = true
+                            // 광고 노출
+                            MobileAds.initialize(ctx) {}
+                            val adRequest = AdRequest.Builder().build()
+                            mBinding.adView.loadAd(adRequest)
 
-                        // 결과 텍스트 설정 및 폰트, 사이즈 적용
-                        val resultText = getString(R.string.home_text_18, result)
-                        val spannableString = SpannableString(resultText)
-                        spannableString.setSpan(AbsoluteSizeSpan(24, true), resultText.indexOf(result), resultText.indexOf(result) + result.length, Spannable.SPAN_EXCLUSIVE_EXCLUSIVE)
-                        spannableString.setSpan(StyleSpan(R.font.roboto_bold), resultText.indexOf(result), resultText.indexOf(result) + result.length, Spanned.SPAN_EXCLUSIVE_EXCLUSIVE)
-                        tvTodayMenu.text = spannableString
+                            // 룰렛 회전 후 클릭 활성화
+                            (activity as ActHome).rouletteNaviBlock(true)
+                            stopDotAnimation()
+                            tvReset.isClickable = true
+                            btnRoulette.isEnabled = true
+
+                            // 결과 텍스트 설정 및 폰트, 사이즈 적용
+                            val resultText = getString(R.string.home_text_18, result)
+                            val spannableString = SpannableString(resultText)
+                            spannableString.setSpan(AbsoluteSizeSpan(24, true), resultText.indexOf(result), resultText.indexOf(result) + result.length, Spannable.SPAN_EXCLUSIVE_EXCLUSIVE)
+                            spannableString.setSpan(StyleSpan(R.font.roboto_bold), resultText.indexOf(result), resultText.indexOf(result) + result.length, Spanned.SPAN_EXCLUSIVE_EXCLUSIVE)
+                            tvTodayMenu.text = spannableString
+                        }
                     }
                 }
             }
 
+            // 회전 각도 설정
             if (isNotReset) {
 
                 val toDegrees = (2000..4000).random().toFloat()

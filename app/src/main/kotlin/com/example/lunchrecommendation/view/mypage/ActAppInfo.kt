@@ -2,7 +2,6 @@ package com.example.lunchrecommendation.view.mypage
 
 import android.content.Intent
 import android.net.Uri
-import android.util.Log
 import com.example.lunchrecommendation.BuildConfig
 import com.example.lunchrecommendation.R
 import com.example.lunchrecommendation.base.BaseContractActivity
@@ -42,6 +41,9 @@ class ActAppInfo : BaseContractActivity<ActAppInfoBinding>() {
 
             // 버전 정보
             tvVersion.text = getString(R.string.home_text_13, BuildConfig.VERSION_NAME)
+
+            // 버전 상태
+            tvVersionStatue.isEnabled = false
         }
     }
 
@@ -76,7 +78,8 @@ class ActAppInfo : BaseContractActivity<ActAppInfoBinding>() {
 
             /** 이메일 보내기 */
             tvEmail.setOnClickListener {
-                val emailAddress = tvEmail.text.toString().trim()
+
+                val emailAddress = getString(R.string.home_text_14)
 
                 val emailIntent = Intent(Intent.ACTION_SENDTO, Uri.fromParts("mailto", emailAddress, null))
                 startActivity(Intent.createChooser(emailIntent, ""))

@@ -44,6 +44,9 @@ class MyFavoriteFoodListAdapter(val context: Context?, private val list: ArrayLi
 
                     // 찜한 메뉴 이미지
                     Glide.with(ctx).load(dao.menuImage).into(ivFood)
+
+                    // 아이템 클릭
+                    clItem.setClickListener(position, selectItem)
                 }
             }
         }

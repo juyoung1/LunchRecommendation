@@ -80,7 +80,7 @@
         android:layout_height="wrap_content"
         android:layout_marginBottom="10dp"
         ads:adSize="BANNER"
-        ads:adUnitId="ca-app-pub-3940256099942544/6300978111"
+        ads:adUnitId="ca-app-pub-2116962709657703/1222168439"
         ads:layout_constraintBottom_toTopOf="@id/llRoulette"
         ads:layout_constraintEnd_toEndOf="parent"
         ads:layout_constraintStart_toStartOf="parent">
