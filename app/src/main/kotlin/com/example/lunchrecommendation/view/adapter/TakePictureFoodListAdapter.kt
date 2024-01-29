@@ -10,7 +10,7 @@ import com.bumptech.glide.Glide
 import com.example.lunchrecommendation.data.dao.MenuDao
 import com.example.lunchrecommendation.databinding.ItemMyLikeFoodListBinding
 import com.example.lunchrecommendation.util.PreferencesUtil
-import com.example.lunchrecommendation.view.mypage.ActTakePictureFood
+import com.example.lunchrecommendation.view.mypage.activity.ActTakePictureFood
 
 /**
  * 내가 찍은 음식 리스트 어댑터

@@ -1,8 +1,11 @@
-package com.example.lunchrecommendation.view.mypage
+package com.example.lunchrecommendation.view.mypage.activity
 
 import android.content.Intent
+import android.util.Log
 import android.view.View
+import androidx.activity.OnBackPressedCallback
 import androidx.recyclerview.widget.GridLayoutManager
+import com.bumptech.glide.Glide
 import com.example.lunchrecommendation.R
 import com.example.lunchrecommendation.base.BaseContractActivity
 import com.example.lunchrecommendation.component.GridLayoutItemDecoration
@@ -12,8 +15,6 @@ import com.example.lunchrecommendation.util.CommonUtils
 import com.example.lunchrecommendation.util.PreferencesUtil
 import com.example.lunchrecommendation.view.adapter.MyFavoriteFoodListAdapter
 import com.example.lunchrecommendation.view.home.activity.ActHome
-import com.example.lunchrecommendation.view.home.fragment.FrgMenu
-import com.example.lunchrecommendation.view.home.fragment.FrgMenuRoulette
 
 /**
  * 마이 페이지 - 내 찜 목록
@@ -43,6 +44,9 @@ class ActMyLikeFoodList : BaseContractActivity<ActMyLikeFoodListBinding>() {
             data.menuImage = menuImage
             mData.add(data)
         }
+
+        // 큰 이미지 보일 때 뒤로 가기
+        backPressedCallBack()
     }
 
     override fun initView() {
@@ -92,6 +96,13 @@ class ActMyLikeFoodList : BaseContractActivity<ActMyLikeFoodListBinding>() {
                     finishAffinity()
                 }
             }
+
+            /** 사진 크게 보기 숨기기 */
+            ivClose.setOnClickListener {
+
+                // 사진 크게 보기 숨기기
+                clBigImage.visibility = View.GONE
+            }
         }
     }
 
@@ -114,10 +125,42 @@ class ActMyLikeFoodList : BaseContractActivity<ActMyLikeFoodListBinding>() {
                 addItemDecoration(GridLayoutItemDecoration(context, itemGap, itemGap, spanCount))
                 mAdapter.selectItem = object : MyFavoriteFoodListAdapter.SelectItem {
 
-                    override fun selectItem(position: Int) {
+                    override fun selectItem(position: Int, type: String) {
 
+                        if (mData.size > position) {
+
+                            val selectItem = mData[position]
+
+                            when(type) {
+
+                                "click" -> {
+
+                                    clBigImage.visibility = View.VISIBLE
+                                    Glide.with(this@ActMyLikeFoodList).load(selectItem.menuImage).into(ivBigImage)
+                                }
+                            }
+                        }
                     }
                 }
+            }
+        }
+    }
+
+    /**
+     * 큰 이미지 보일 때 뒤로 가기
+     */
+    private fun backPressedCallBack() {
+
+        backPressedCallback = object : OnBackPressedCallback(true) {
+            override fun handleOnBackPressed() {
+
+                if ( mBinding.clBigImage.visibility == View.VISIBLE ) {
+
+                    mBinding.clBigImage.visibility = View.GONE
+                    return
+                }
+
+                finish()
             }
         }
     }

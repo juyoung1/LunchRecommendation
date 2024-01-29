@@ -1,4 +1,4 @@
-package com.example.lunchrecommendation.view.mypage
+package com.example.lunchrecommendation.view.mypage.activity
 
 import android.Manifest
 import android.content.Intent

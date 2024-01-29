@@ -11,9 +11,9 @@ import com.example.lunchrecommendation.base.BaseFragment
 import com.example.lunchrecommendation.databinding.FrgMyPageBinding
 import com.example.lunchrecommendation.util.PreferencesUtil
 import com.example.lunchrecommendation.view.dialog.SheetProfileEdit
-import com.example.lunchrecommendation.view.mypage.ActAppInfo
-import com.example.lunchrecommendation.view.mypage.ActMyLikeFoodList
-import com.example.lunchrecommendation.view.mypage.ActTakePictureFood
+import com.example.lunchrecommendation.view.mypage.activity.ActAppInfo
+import com.example.lunchrecommendation.view.mypage.activity.ActMyLikeFoodList
+import com.example.lunchrecommendation.view.mypage.activity.ActTakePictureFood
 import com.example.lunchrecommendation.view.nickname.ActNickName
 
 /**

@@ -8,6 +8,7 @@
     <string name="app_title">점심 메뉴 추천</string>
     <string name="confirm">확인</string>
     <string name="close">닫기</string>
+    <string name="count">%d/%d</string>
 
     <string name="nick_name_text_1">닉네임</string>
     <string name="nick_name_text_2">닉네임 설정</string>

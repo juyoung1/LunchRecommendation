@@ -108,6 +108,12 @@ dependencies {
     implementation(libs.rxkotlin)
     implementation(libs.rxandroid)
 
+    /** RxBinding */
+    implementation (libs.rxbinding)
+
+    /** Blur */
+    implementation (libs.realtimeblurview)
+
     /** RxJava2 */
     implementation(libs.rxjava2.rxjava)
     implementation(libs.rxjava2.rxandroid)

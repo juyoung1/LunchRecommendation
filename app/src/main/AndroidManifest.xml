@@ -70,7 +70,7 @@
 
         <!-- 마이 페이지 - 내 찜 목록 -->
         <activity
-            android:name=".view.mypage.ActMyLikeFoodList"
+            android:name=".view.mypage.activity.ActMyLikeFoodList"
             android:configChanges="screenSize|screenLayout|orientation"
             android:exported="false"
             android:noHistory="false"
@@ -79,7 +79,7 @@
 
         <!-- 마이 페이지 - 내가 찍은 음식 -->
         <activity
-            android:name=".view.mypage.ActTakePictureFood"
+            android:name=".view.mypage.activity.ActTakePictureFood"
             android:configChanges="screenSize|screenLayout|orientation"
             android:exported="false"
             android:noHistory="false"
@@ -89,7 +89,7 @@
 
         <!-- 마이 페이지 - 앱 정보 -->
         <activity
-            android:name=".view.mypage.ActAppInfo"
+            android:name=".view.mypage.activity.ActAppInfo"
             android:configChanges="screenSize|screenLayout|orientation"
             android:exported="false"
             android:noHistory="false"
