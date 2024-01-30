@@ -2,7 +2,7 @@ package com.lunch.lunchrecommendation.view.mypage.activity
 
 import android.content.Intent
 import android.net.Uri
-import com.facebook.shimmer.BuildConfig
+import com.lunch.lunchrecommendation.BuildConfig
 import com.lunch.lunchrecommendation.R
 import com.lunch.lunchrecommendation.base.BaseContractActivity
 import com.lunch.lunchrecommendation.databinding.ActAppInfoBinding
