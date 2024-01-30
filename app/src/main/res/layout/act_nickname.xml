@@ -63,7 +63,7 @@
         app:layout_constraintTop_toBottomOf="@id/etNickName" />
 
     <!-- 다음 버튼 -->
-    <com.example.lunchrecommendation.view.custom.CommonButton
+    <com.lunch.lunchrecommendation.view.custom.CommonButton
         android:id="@+id/btnNext"
         style="@style/sharpsansBold.16"
         android:layout_width="match_parent"

@@ -5,11 +5,11 @@ plugins {
 }
 
 android {
-    namespace = "com.example.lunchrecommendation"
+    namespace = "com.lunch.lunchrecommendation"
     compileSdk = 34
 
     defaultConfig {
-        applicationId = "com.example.lunchrecommendation"
+        applicationId = "com.lunch.lunchrecommendation"
         minSdk = 24
         targetSdk = 34
         versionCode = 1

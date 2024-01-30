@@ -100,7 +100,7 @@
         <!-- File Provider -->
         <provider
             android:name="androidx.core.content.FileProvider"
-            android:authorities="com.example.lunchrecommendation.fileProvider"
+            android:authorities="com.lunch.lunchrecommendation.fileProvider"
             android:exported="false"
             android:grantUriPermissions="true">
             <meta-data
