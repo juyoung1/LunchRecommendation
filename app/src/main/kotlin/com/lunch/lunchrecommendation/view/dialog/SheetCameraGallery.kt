@@ -128,7 +128,7 @@ class SheetCameraGallery(private val imageCapturedCallback: (String) -> Unit) : 
 
         photoFile?.let { file ->
 
-            val photoUri: Uri = FileProvider.getUriForFile(requireContext(), "com.example.lunchrecommendation.fileProvider", file)
+            val photoUri: Uri = FileProvider.getUriForFile(requireContext(), "com.lunch.lunchrecommendation.fileProvider", file)
             takePicture.launch(photoUri)
         }
     }

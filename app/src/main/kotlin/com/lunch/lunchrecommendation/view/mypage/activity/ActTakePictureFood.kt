@@ -173,7 +173,7 @@ class ActTakePictureFood : BaseContractActivity<ActTakePictureFoodBinding>() {
 
         photoFile?.let { file ->
 
-            val photoUri: Uri = FileProvider.getUriForFile(this@ActTakePictureFood, "com.example.lunchrecommendation.fileProvider", file)
+            val photoUri: Uri = FileProvider.getUriForFile(this@ActTakePictureFood, "com.lunch.lunchrecommendation.fileProvider", file)
             takePicture.launch(photoUri)
         }
     }
