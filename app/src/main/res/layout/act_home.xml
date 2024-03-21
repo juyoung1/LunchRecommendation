@@ -12,7 +12,7 @@
         android:id="@+id/incHeader"
         layout="@layout/inc_common_header"
         android:layout_width="match_parent"
-        android:layout_height="50dp"
+        android:layout_height="51dp"
         app:layout_constraintTop_toTopOf="parent" />
 
     <!-- 하단 네비게이션 바 -->
