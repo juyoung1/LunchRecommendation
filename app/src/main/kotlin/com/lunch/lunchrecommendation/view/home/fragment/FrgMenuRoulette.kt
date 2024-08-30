@@ -128,7 +128,7 @@ class FrgMenuRoulette : BaseFragment<FrgMenuRouletteBinding>() {
                             // 광고 노출
                             MobileAds.initialize(ctx) {}
                             val adRequest = AdRequest.Builder().build()
-                            mBinding.adView.loadAd(adRequest)
+                            adView.loadAd(adRequest)
 
                             // 룰렛 회전 후 클릭 활성화
                             (activity as ActHome).rouletteNaviBlock(true)

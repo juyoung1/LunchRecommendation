@@ -114,27 +114,30 @@ class ActHome : BaseContractActivity<ActHomeBinding>() {
      */
     private fun changeMainFragment(page: Enum.Page) {
 
-        val fragment = when( page ) {
+        with(mBinding) {
 
-            Enum.Page.Menu -> { FrgMenu.newInstance() }
-            Enum.Page.Roulette -> { FrgMenuRoulette.newInstance() }
-            Enum.Page.MyPage -> { FrgMyPage.newInstance() }
+            val fragment = when( page ) {
+
+                Enum.Page.Menu -> { FrgMenu.newInstance() }
+                Enum.Page.Roulette -> { FrgMenuRoulette.newInstance() }
+                Enum.Page.MyPage -> { FrgMyPage.newInstance() }
+            }
+
+            currentFragment = fragment
+            replaceFragment(R.id.flHome, fragment)
+
+            // 헤더 변경
+            changeHeader(page)
+
+            // Bottom navigation button 변경
+            incNaviMenu.btnNavi.isSelected = page == Enum.Page.Menu
+            incNaviRoulette.btnNavi.isSelected = page == Enum.Page.Roulette
+            incNaviMyPage.btnNavi.isSelected = page == Enum.Page.MyPage
+
+            selectedTextStyle(incNaviMenu.btnNavi.isSelected, incNaviMenu.tvNavi)
+            selectedTextStyle(incNaviRoulette.btnNavi.isSelected, incNaviRoulette.tvNavi)
+            selectedTextStyle(incNaviMyPage.btnNavi.isSelected, incNaviMyPage.tvNavi)
         }
-
-        currentFragment = fragment
-        replaceFragment(R.id.flHome, fragment)
-
-        // 헤더 변경
-        changeHeader(page)
-
-        // Bottom navigation button 변경
-        mBinding.incNaviMenu.btnNavi.isSelected = page == Enum.Page.Menu
-        mBinding.incNaviRoulette.btnNavi.isSelected = page == Enum.Page.Roulette
-        mBinding.incNaviMyPage.btnNavi.isSelected = page == Enum.Page.MyPage
-
-        selectedTextStyle(mBinding.incNaviMenu.btnNavi.isSelected, mBinding.incNaviMenu.tvNavi)
-        selectedTextStyle(mBinding.incNaviRoulette.btnNavi.isSelected, mBinding.incNaviRoulette.tvNavi)
-        selectedTextStyle(mBinding.incNaviMyPage.btnNavi.isSelected, mBinding.incNaviMyPage.tvNavi)
     }
 
     /**
